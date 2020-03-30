@@ -12,7 +12,7 @@
     <artifactId>fishing-trip</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>fishing-trip</name>
-    <description>Applikation to keep track on fishing days and fish caught</description>
+    <description>Application to keep track on fishing days and fish caught</description>
 
     <properties>
         <java.version>11</java.version>
