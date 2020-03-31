@@ -1,6 +1,5 @@
 package ecutb.fishingtrip.dto;
 
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -14,7 +13,6 @@ public class CreateFishingTrip {
     @NotBlank(message = SPECIFY_WATER_TYPE)
     @Size(min = 2, max = 150, message = WATER_FORMAT_MESSAGE)
     private String waterType;
-    @Value("${location}: Secret Location")
     private String location;
 
     public String getFishingMethod() {

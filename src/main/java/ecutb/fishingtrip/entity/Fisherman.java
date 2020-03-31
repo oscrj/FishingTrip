@@ -25,7 +25,7 @@ public class Fisherman {
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE},
             fetch = FetchType.LAZY)
-    @JoinTable(name = "fisherman_id_fishermanRole_id",
+    @JoinTable(name = "fisherman_id_fisherman_role",
             joinColumns = @JoinColumn(name = "fisherman_id"),
             inverseJoinColumns = @JoinColumn(name = "fishermanRole_id"))
     private Set<FishermanRole> fishermanRoles;
