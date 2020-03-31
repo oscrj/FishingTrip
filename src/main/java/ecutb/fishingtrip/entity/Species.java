@@ -13,8 +13,8 @@ public class Species {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String speciesId;
     private String species;
-    private String length;
-    private String weight;
+    private double length;
+    private double weight;
     private String fishingLure;
     private String description;
 
@@ -24,7 +24,7 @@ public class Species {
 
     public Species(){}
 
-    public Species(String species, String length, String weight, String fishingLure, String description) {
+    public Species(String species, double length, double weight, String fishingLure, String description) {
         this.species = species;
         this.length = length;
         this.weight = weight;
@@ -44,19 +44,19 @@ public class Species {
         this.species = species;
     }
 
-    public String getLength() {
+    public double getLength() {
         return length;
     }
 
-    public void setLength(String length) {
+    public void setLength(double length) {
         this.length = length;
     }
 
-    public String getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(String weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 

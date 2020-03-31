@@ -3,6 +3,7 @@ package ecutb.fishingtrip.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -17,6 +18,7 @@ public class FishingTrip {
     private String fishingMethod;
     private String waterType;
     private String location;
+    private LocalDate date;
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "fisherman_id")
     private Fisherman fisherman;
@@ -27,12 +29,11 @@ public class FishingTrip {
 
     public FishingTrip(){}
 
-    public FishingTrip(String fishingMethod, String waterType, String location, Fisherman fisherman, List<Species> fishCaught) {
+    public FishingTrip(String fishingMethod, String waterType, String location, LocalDate date) {
         this.fishingMethod = fishingMethod;
         this.waterType = waterType;
         this.location = location;
-        this.fisherman = fisherman;
-        this.fishCaught = fishCaught;
+        this.date = date;
     }
 
     public String getFishingTripId() {
@@ -61,6 +62,14 @@ public class FishingTrip {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public Fisherman getFisherman() {
@@ -101,12 +110,13 @@ public class FishingTrip {
         return Objects.equals(fishingTripId, that.fishingTripId) &&
                 Objects.equals(fishingMethod, that.fishingMethod) &&
                 Objects.equals(waterType, that.waterType) &&
-                Objects.equals(location, that.location);
+                Objects.equals(location, that.location) &&
+                Objects.equals(date, that.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fishingTripId, fishingMethod, waterType, location);
+        return Objects.hash(fishingTripId, fishingMethod, waterType, location, date);
     }
 
     @Override
@@ -116,6 +126,7 @@ public class FishingTrip {
                 ", fishingMethod='" + fishingMethod + '\'' +
                 ", waterType='" + waterType + '\'' +
                 ", location='" + location + '\'' +
+                ", date=" + date +
                 '}';
     }
 }

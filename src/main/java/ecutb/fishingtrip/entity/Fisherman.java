@@ -16,7 +16,7 @@ public class Fisherman {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String fishermanId;
-    @Column(unique = true)
+    @Column(unique = true, length = 60)
     private String userName;
     @Column(unique = true)
     private String email;
@@ -25,7 +25,7 @@ public class Fisherman {
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE},
             fetch = FetchType.LAZY)
-    @JoinTable(name = "fisherman_id_fisherman_role",
+    @JoinTable(name = "fisherman_id_fishermanRole_id",
             joinColumns = @JoinColumn(name = "fisherman_id"),
             inverseJoinColumns = @JoinColumn(name = "fishermanRole_id"))
     private Set<FishermanRole> fishermanRoles;
