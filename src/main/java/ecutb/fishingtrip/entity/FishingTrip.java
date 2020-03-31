@@ -3,6 +3,7 @@ package ecutb.fishingtrip.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,16 +23,16 @@ public class FishingTrip {
 
     @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
             mappedBy = "fishingTrip")
-    private List<Species> fishCatches;
+    private List<Species> fishCaught;
 
     public FishingTrip(){}
 
-    public FishingTrip(String fishingMethod, String waterType, String location, Fisherman fisherman, List<Species> fishCatches) {
+    public FishingTrip(String fishingMethod, String waterType, String location, Fisherman fisherman, List<Species> fishCaught) {
         this.fishingMethod = fishingMethod;
         this.waterType = waterType;
         this.location = location;
         this.fisherman = fisherman;
-        this.fishCatches = fishCatches;
+        this.fishCaught = fishCaught;
     }
 
     public String getFishingTripId() {
@@ -70,24 +71,26 @@ public class FishingTrip {
         this.fisherman = fisherman;
     }
 
-    public List<Species> getFishCatches() {
-        return fishCatches;
+    public List<Species> getFishCaught() {
+        return fishCaught;
     }
 
-    public void setFishCatches(List<Species> speciesList) {
-        this.fishCatches = speciesList;
+    public void setFishCaught(List<Species> speciesList) {
+        if(this.fishCaught == null) fishCaught = new ArrayList<>();
+        this.fishCaught = speciesList;
     }
 
     // add fish to list.
-    public void addCatch(Species fishCaught){
-        fishCatches.add(fishCaught);
-        fishCaught.setFishingTrip(this);
+    public void addCatch(Species fish){
+        if(this.fishCaught == null) fishCaught = new ArrayList<>();
+        fishCaught.add(fish);
+        fish.setFishingTrip(this);
     }
 
     // remove fish from list
-    public void removeCatch(Species fishCaught){
-        fishCaught.setFishingTrip(null);
-        fishCatches.remove(fishCaught);
+    public void removeCatch(Species fish){
+        fish.setFishingTrip(null);
+        fishCaught.remove(fish);
     }
 
     @Override

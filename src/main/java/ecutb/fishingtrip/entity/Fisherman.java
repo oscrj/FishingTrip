@@ -114,6 +114,7 @@ public class Fisherman {
     }
 
     public boolean removeFishingTrip(FishingTrip fishingTrip){
+
         return true;
     }
 
