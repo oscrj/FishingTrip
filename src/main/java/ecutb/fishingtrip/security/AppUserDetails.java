@@ -1,20 +1,20 @@
 package ecutb.fishingtrip.security;
 
-import ecutb.fishingtrip.entity.Fisherman;
+import ecutb.fishingtrip.entity.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class FishermanDetails implements UserDetails {
+public class AppUserDetails implements UserDetails {
 
-    private Fisherman fisherman;
+    private AppUser appUser;
     private Collection<GrantedAuthority> authorities;
 
     @Autowired
-    public FishermanDetails(Fisherman fisherman, Collection<GrantedAuthority> authorities) {
-        this.fisherman = fisherman;
+    public AppUserDetails(AppUser appUser, Collection<GrantedAuthority> authorities) {
+        this.appUser = appUser;
         this.authorities = authorities;
     }
 
@@ -25,12 +25,12 @@ public class FishermanDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return fisherman.getPassword();
+        return appUser.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return fisherman.getUserName();
+        return appUser.getUserName();
     }
 
     @Override

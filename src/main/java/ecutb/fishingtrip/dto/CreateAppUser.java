@@ -8,7 +8,7 @@ import static ecutb.fishingtrip.constants.message.ValidationMessages.*;
 import static ecutb.fishingtrip.constants.regex.RegexPattern.EMAIL_REGEX_PATTERN;
 import static ecutb.fishingtrip.constants.regex.RegexPattern.PASSWORD_REGEX_PATTERN;
 
-public class CreateFisherman {
+public class CreateAppUser {
 
     @NotBlank(message = FIELD_FORMAT_MESSAGE)
     @Size(min = 2, max = 60, message = USERNAME_FORMAT_MESSAGE)

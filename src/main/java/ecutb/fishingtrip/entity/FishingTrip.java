@@ -20,8 +20,8 @@ public class FishingTrip {
     private String location;
     private LocalDate date;
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "fisherman_id")
-    private Fisherman fisherman;
+    @JoinColumn(name = "appUser_id")
+    private AppUser appUser;
 
     @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
             mappedBy = "fishingTrip")
@@ -72,12 +72,12 @@ public class FishingTrip {
         this.date = date;
     }
 
-    public Fisherman getFisherman() {
-        return fisherman;
+    public AppUser getAppUser() {
+        return appUser;
     }
 
-    public void setFisherman(Fisherman fisherman) {
-        this.fisherman = fisherman;
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
     public List<Species> getFishCaught() {
@@ -85,7 +85,9 @@ public class FishingTrip {
     }
 
     public void setFishCaught(List<Species> speciesList) {
-        if(this.fishCaught == null) fishCaught = new ArrayList<>();
+        if(this.fishCaught == null) {
+            fishCaught = new ArrayList<>();
+        }
         this.fishCaught = speciesList;
     }
 
@@ -98,6 +100,7 @@ public class FishingTrip {
 
     // remove fish from list
     public void removeCatch(Species fish){
+        if(this.fishCaught == null) fishCaught = new ArrayList<>();
         fish.setFishingTrip(null);
         fishCaught.remove(fish);
     }

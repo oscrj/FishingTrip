@@ -9,18 +9,18 @@ import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-public class FishermanRole {
+public class AppUserRole {
 
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name =  "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String roleId;
     @Column(unique = true)
-    private String role;
+    private UserRole role;
 
-    public FishermanRole() {}
+    public AppUserRole() {}
 
-    public FishermanRole(String role){
+    public AppUserRole(UserRole role){
         this.role = role;
     }
 
@@ -28,11 +28,11 @@ public class FishermanRole {
         return roleId;
     }
 
-    public String getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 
@@ -40,7 +40,7 @@ public class FishermanRole {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FishermanRole that = (FishermanRole) o;
+        AppUserRole that = (AppUserRole) o;
         return Objects.equals(roleId, that.roleId) &&
                 Objects.equals(role, that.role);
     }
