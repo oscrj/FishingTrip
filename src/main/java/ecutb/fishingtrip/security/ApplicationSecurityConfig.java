@@ -10,7 +10,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/**")
+                .antMatchers("/**").permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/login")    //  Get method
+                .loginProcessingUrl("/login")   //  Post method i haven't created. Spring security makes it for me.
+                .usernameParameter("username")
+                .passwordParameter("password")
                 .permitAll();
     }
 }
