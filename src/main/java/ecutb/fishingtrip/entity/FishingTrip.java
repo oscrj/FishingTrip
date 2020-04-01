@@ -4,8 +4,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,12 +18,8 @@ public class FishingTrip {
     private String location;
     private LocalDate date;
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "appUser_id")
+    @JoinColumn(name = "username", referencedColumnName = "username")
     private AppUser appUser;
-
-    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
-            mappedBy = "fishingTrip")
-    private List<Species> fishCaught;
 
     public FishingTrip(){}
 
@@ -78,31 +72,6 @@ public class FishingTrip {
 
     public void setAppUser(AppUser appUser) {
         this.appUser = appUser;
-    }
-
-    public List<Species> getFishCaught() {
-        return fishCaught;
-    }
-
-    public void setFishCaught(List<Species> speciesList) {
-        if(this.fishCaught == null) {
-            fishCaught = new ArrayList<>();
-        }
-        this.fishCaught = speciesList;
-    }
-
-    // add fish to list.
-    public void addCatch(Species fish){
-        if(this.fishCaught == null) fishCaught = new ArrayList<>();
-        fishCaught.add(fish);
-        fish.setFishingTrip(this);
-    }
-
-    // remove fish from list
-    public void removeCatch(Species fish){
-        if(this.fishCaught == null) fishCaught = new ArrayList<>();
-        fish.setFishingTrip(null);
-        fishCaught.remove(fish);
     }
 
     @Override

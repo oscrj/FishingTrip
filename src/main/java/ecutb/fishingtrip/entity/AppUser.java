@@ -4,8 +4,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -29,11 +27,6 @@ public class AppUser {
             joinColumns = @JoinColumn(name = "appUser_id"),
             inverseJoinColumns = @JoinColumn(name = "appUserRole_id"))
     private Set<AppUserRole> appUserRoles;
-
-    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
-            fetch = FetchType.LAZY,
-            mappedBy = "appUser")
-    private List<FishingTrip> fishingTripList;
 
     public AppUser(){}
 
@@ -86,36 +79,6 @@ public class AppUser {
 
     public void setAppUserRoles(Set<AppUserRole> appUserRoles) {
         this.appUserRoles = appUserRoles;
-    }
-
-    public List<FishingTrip> getFishingTripList() {
-        return fishingTripList;
-    }
-
-    public void setFishingTripList(List<FishingTrip> fishingTripList) {
-        if(this.fishingTripList == null){
-            fishingTripList = new ArrayList<>();
-        }
-        this.fishingTripList = fishingTripList;
-    }
-
-    public boolean addFishingTrip(FishingTrip fishingTrip){
-        if(this.fishingTripList == null) fishingTripList = new ArrayList<>();
-        if(fishingTrip == null) return false;
-        if(fishingTripList.contains(fishingTrip)) return false;
-
-        fishingTripList.add(fishingTrip);
-        fishingTrip.setAppUser(this);
-        return true;
-    }
-
-    public boolean removeFishingTrip(FishingTrip fishingTrip){
-        if(this.fishingTripList == null) fishingTripList = new ArrayList<>();
-        if(fishingTrip == null) return false;
-
-        fishingTripList.remove(fishingTrip);
-        fishingTrip.setAppUser(null);
-        return true;
     }
 
     @Override
