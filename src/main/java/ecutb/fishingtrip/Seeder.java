@@ -44,17 +44,21 @@ public class Seeder {
         userRole.add(user);
 
         //  Create APP_ADMIN user:
-        AppUser appAdmin = new AppUser("admin", "Foo", "Bar", "foobar@admin.com", passwordEncoder.encode("admin123"),LocalDate.now());
+        AppUser appAdmin = new AppUser("admin", "Foo", "Bar", "foo.bar@admin.com", passwordEncoder.encode("admin1234"),LocalDate.now());
         appAdmin.setAppUserRoles(roles);
         appUserRepository.save(appAdmin);
 
         // Create APP_USER user:
-        AppUser appUser = new AppUser("test", "John","Doe", "johndoe@gmail.com", passwordEncoder.encode("password1"), LocalDate.now());
+        AppUser appUser = new AppUser("oscrj", "Oscar","Johanneson", "oscar.johanneson@gmail.com", passwordEncoder.encode("password1"), LocalDate.now());
         appUser.setAppUserRoles(userRole);
         appUserRepository.save(appUser);
 
-        AppUser appUser2 = new AppUser("test2", "Jane","Doe", "janedoe@gmail.com", passwordEncoder.encode("password2"), LocalDate.now());
+        AppUser appUser2 = new AppUser("test", "John","Doe", "john.doe@gmail.com", passwordEncoder.encode("password12"), LocalDate.now());
         appUser2.setAppUserRoles(userRole);
+        appUserRepository.save(appUser);
+
+        AppUser appUser3 = new AppUser("test2", "Jane","Doe", "jane.doe@gmail.com", passwordEncoder.encode("password123"), LocalDate.now());
+        appUser3.setAppUserRoles(userRole);
         appUserRepository.save(appUser2);
 
     }

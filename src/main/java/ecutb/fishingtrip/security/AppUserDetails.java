@@ -33,6 +33,14 @@ public class AppUserDetails implements UserDetails {
         return appUser.getUserName();
     }
 
+    public String getFirstName(){
+        return appUser.getFirstName();
+    }
+
+    public String getLastName(){
+        return appUser.getLastName();
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

@@ -30,21 +30,11 @@ public class AppUserServiceImpl implements AppUserService {
         this.roleRepository = roleRepository;
     }
 
-    /**
-     *
-     * @param appUser
-     * @return
-     */
     @Override
     public AppUser saveAndUpdate(AppUser appUser) {
         return appUserRepository.save(appUser);
     }
 
-    /**
-     *
-     * @param form
-     * @return
-     */
     @Override
     @Transactional(rollbackFor = RuntimeException.class)
     public AppUser registerNew(CreateAppUser form) {
@@ -73,21 +63,11 @@ public class AppUserServiceImpl implements AppUserService {
 
     }
 
-    /**
-     *
-     * @param userId
-     * @return
-     */
     @Override
     public Optional<AppUser> findById(String userId) {
         return appUserRepository.findById(userId);
     }
 
-    /**
-     *
-     * @param userName
-     * @return
-     */
     @Override
     public Optional<AppUser> findByUserName(String userName) {
         return appUserRepository.findByUserNameIgnoreCase(userName);

@@ -28,7 +28,7 @@
     </ul>
     <form th:action="@{/logout}" class="form-inline" method="post">
         <div sec:authorize="isAuthenticated()">
-            <!-- <p th:text="${Find a way to show logged in user username}"></p> -->
+            <span sec:authentication="name" class="mr-2"></span>
             <button class="btn btn-outline-light" type="submit" value="Logout">Logout</button>
         </div>
         <div sec:authorize="isAnonymous()">
