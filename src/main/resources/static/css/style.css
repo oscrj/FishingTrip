@@ -1,0 +1,23 @@
+body{
+    background: #3a4750;
+    color: lightgrey;
+}
+
+#navigation{
+    border-bottom: 1px solid lightgrey;
+}
+
+.nav-logo{
+    width: 65px;
+    height: 56px;
+}
+
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form{
+    background: #3a4750;
+}

@@ -49,11 +49,20 @@ public class AppUserServiceImpl implements AppUserService {
     @Transactional(rollbackFor = RuntimeException.class)
     public AppUser registerNew(CreateAppUser form) {
         //  Set role that later will be set to newUser.
-        AppUserRole role = roleRepository.findByRole(UserRole.USER).orElseThrow(() -> new IllegalArgumentException("Couldn't find role"));
-        Set<AppUserRole> userRoleSet = new HashSet<>();
-        userRoleSet.add(role);
+        AppUserRole adminRole = roleRepository.findByRole(UserRole.ADMIN).orElseThrow(() -> new IllegalArgumentException("Couldn't find role"));
+        Set<AppUserRole> adminRoleSet = new HashSet<>();
 
-        // Check if newUser shall be ADMIN?
+        AppUserRole userRole = roleRepository.findByRole(UserRole.USER).orElseThrow(() -> new IllegalArgumentException("Couldn't find role"));
+        Set<AppUserRole> userRoleSet = new HashSet<>();
+
+        //  USER, ADMIN role
+        adminRoleSet.add(adminRole);
+        adminRoleSet.add(userRole);
+
+        //  USER role
+        userRoleSet.add(userRole);
+
+        //  Check if newUser shall be ADMIN?
         AppUser newUser = new AppUser(form.getUserName(),form.getFirstName(), form.getLastName(), form.getEmail(), passwordEncoder.encode(form.getPassword()), LocalDate.now());
         //  Save newUser in database
         newUser = appUserRepository.save(newUser);

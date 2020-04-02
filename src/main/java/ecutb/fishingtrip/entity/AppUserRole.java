@@ -1,20 +1,14 @@
 package ecutb.fishingtrip.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public class AppUserRole {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name =  "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    private String roleId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int roleId;
     @Column(unique = true)
     private UserRole role;
 
@@ -24,7 +18,7 @@ public class AppUserRole {
         this.role = role;
     }
 
-    public String getRoleId() {
+    public int getRoleId() {
         return roleId;
     }
 
@@ -41,8 +35,8 @@ public class AppUserRole {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AppUserRole that = (AppUserRole) o;
-        return Objects.equals(roleId, that.roleId) &&
-                Objects.equals(role, that.role);
+        return roleId == that.roleId &&
+                role == that.role;
     }
 
     @Override
@@ -51,11 +45,10 @@ public class AppUserRole {
     }
 
     @Override
-    public String
-    toString() {
-        return "FishermanRole{" +
-                "roleId='" + roleId + '\'' +
-                ", role='" + role + '\'' +
+    public String toString() {
+        return "AppUserRole{" +
+                "roleId=" + roleId +
+                ", role=" + role +
                 '}';
     }
 }
