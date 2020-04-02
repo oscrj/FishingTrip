@@ -30,11 +30,21 @@ public class AppUserServiceImpl implements AppUserService {
         this.roleRepository = roleRepository;
     }
 
+    /**
+     *
+     * @param appUser
+     * @return
+     */
     @Override
-    public AppUser save(AppUser appUser) {
+    public AppUser saveAndUpdate(AppUser appUser) {
         return appUserRepository.save(appUser);
     }
 
+    /**
+     *
+     * @param form
+     * @return
+     */
     @Override
     @Transactional(rollbackFor = RuntimeException.class)
     public AppUser registerNew(CreateAppUser form) {
@@ -44,8 +54,7 @@ public class AppUserServiceImpl implements AppUserService {
         userRoleSet.add(role);
 
         // Check if newUser shall be ADMIN?
-
-        AppUser newUser = new AppUser(form.getUserName(), form.getEmail(), passwordEncoder.encode(form.getPassword()), LocalDate.now());
+        AppUser newUser = new AppUser(form.getUserName(),form.getFirstName(), form.getLastName(), form.getEmail(), passwordEncoder.encode(form.getPassword()), LocalDate.now());
         //  Save newUser in database
         newUser = appUserRepository.save(newUser);
         //  Set role to newUser using Set of roles(USER only).
@@ -55,11 +64,21 @@ public class AppUserServiceImpl implements AppUserService {
 
     }
 
+    /**
+     *
+     * @param userId
+     * @return
+     */
     @Override
     public Optional<AppUser> findById(String userId) {
         return appUserRepository.findById(userId);
     }
 
+    /**
+     *
+     * @param userName
+     * @return
+     */
     @Override
     public Optional<AppUser> findByUserName(String userName) {
         return appUserRepository.findByUserNameIgnoreCase(userName);

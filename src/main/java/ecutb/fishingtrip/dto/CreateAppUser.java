@@ -14,6 +14,12 @@ public class CreateAppUser {
     @Size(min = 2, max = 60, message = USERNAME_FORMAT_MESSAGE)
     private String userName;
     @NotBlank(message = FIELD_FORMAT_MESSAGE)
+    @Size(min = 2, max = 64, message = NAME_FORMAT_MESSAGE)
+    private String firstName;
+    @NotBlank(message = FIELD_FORMAT_MESSAGE)
+    @Size(min = 2, max = 64, message = NAME_FORMAT_MESSAGE)
+    private String lastName;
+    @NotBlank(message = FIELD_FORMAT_MESSAGE)
     @Pattern(regexp = EMAIL_REGEX_PATTERN,
             flags = Pattern.Flag.CASE_INSENSITIVE,
             message = EMAIL_FORMAT_MESSAGE)
@@ -32,6 +38,22 @@ public class CreateAppUser {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {

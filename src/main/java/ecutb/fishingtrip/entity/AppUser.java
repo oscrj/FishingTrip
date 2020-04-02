@@ -16,6 +16,8 @@ public class AppUser {
     private String userId;
     @Column(unique = true, length = 60)
     private String userName;
+    private String firstName;
+    private String lastName;
     @Column(unique = true)
     private String email;
     private String password;
@@ -30,10 +32,12 @@ public class AppUser {
 
     public AppUser(){}
 
-    public AppUser(String userName, String email, String password, LocalDate regDate) {
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
+    public AppUser(String userName,String firstName,String lastName, String email, String password, LocalDate regDate) {
+        setUserName(userName);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+        setPassword(password);
         this.regDate = regDate;
     }
 
@@ -47,6 +51,22 @@ public class AppUser {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -85,23 +105,27 @@ public class AppUser {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AppUser appUser = (AppUser) o;
-        return Objects.equals(userId, appUser.userId) &&
-                Objects.equals(userName, appUser.userName) &&
-                Objects.equals(email, appUser.email) &&
-                Objects.equals(regDate, appUser.regDate);
+        AppUser user = (AppUser) o;
+        return Objects.equals(userId, user.userId) &&
+                Objects.equals(userName, user.userName) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(regDate, user.regDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, userName, email, regDate);
+        return Objects.hash(userId, userName, firstName, lastName, email, regDate);
     }
 
     @Override
     public String toString() {
-        return "Fisherman{" +
-                "fishermanId='" + userId + '\'' +
+        return "AppUser{" +
+                "userId='" + userId + '\'' +
                 ", userName='" + userName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", regDate=" + regDate +
                 '}';
