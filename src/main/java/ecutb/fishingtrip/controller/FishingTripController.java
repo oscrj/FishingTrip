@@ -1,6 +1,7 @@
 package ecutb.fishingtrip.controller;
 
 import ecutb.fishingtrip.dto.CreateFishingTrip;
+import ecutb.fishingtrip.dto.CreateSpecies;
 import ecutb.fishingtrip.entity.FishingTrip;
 import ecutb.fishingtrip.entity.Species;
 import ecutb.fishingtrip.service.FishingTripService;
@@ -46,10 +47,22 @@ public class FishingTripController {
         return "redirect:/index";
     }
 
-    @GetMapping("gofishing/catch")
+    @GetMapping("/catch")
     public String getCatchForm(Model model){
         model.addAttribute("catchForm", new Species());
         return "new-catch";
+    }
+
+    @PostMapping("/catch")
+    public String createNewCatch(@Valid @ModelAttribute(name = "catchForm") CreateSpecies specie, @AuthenticationPrincipal UserDetails appUser, BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            return "new-catch";
+        }
+
+
+        // should return a different view.
+        return "redirect:/index";
     }
 
 
