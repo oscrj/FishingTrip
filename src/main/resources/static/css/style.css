@@ -25,3 +25,16 @@ button{
 .login-form{
     background: #3a4750;
 }
+
+.access-denied{
+    background: rgba(211,211,211,0.2);
+}
+
+.access-header{
+    border-bottom: 1px solid lightgrey;
+    margin: 20px;
+}
+
+.access-message{
+    margin: 20px;
+}

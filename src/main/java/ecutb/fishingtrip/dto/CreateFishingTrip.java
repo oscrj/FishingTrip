@@ -13,7 +13,7 @@ public class CreateFishingTrip {
     @NotBlank(message = SPECIFY_WATER_TYPE)
     @Size(min = 2, max = 150, message = WATER_FORMAT_MESSAGE)
     private String waterType;
-    @Size(min = 1, max = 255, message = LOCATION_FORMAT_MESSAGE)
+    //  @Size(min = 0, max = 255, message = LOCATION_FORMAT_MESSAGE)
     private String location;
 
     public String getFishingMethod() {
@@ -38,5 +38,12 @@ public class CreateFishingTrip {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getCheckLocationIsEmpty(){
+         if(this.location.isEmpty()){
+           return location = "Secrete location";
+        }
+         return location;
     }
 }

@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +45,7 @@ public class FishingTripServiceImpl implements FishingTripService {
     public FishingTrip newFishingTrip(CreateFishingTrip form, String userName) {
         AppUser loggedInUser = appUserRepository.findByUserNameIgnoreCase(userName).orElseThrow(() -> new UsernameNotFoundException("Requested user could not be found"));
 
-        FishingTrip newFishingTrip = new FishingTrip(form.getFishingMethod(), form.getWaterType(), form.getLocation(), LocalDate.now());
+        FishingTrip newFishingTrip = new FishingTrip(form.getFishingMethod(), form.getWaterType(), form.getCheckLocationIsEmpty(), LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
         newFishingTrip.setAppUser(loggedInUser);
 
         return fishingTripRepository.save(newFishingTrip);

@@ -26,13 +26,13 @@ public class FishingTripController {
         this.fishingTripService = fishingTripService;
     }
 
-    @GetMapping("/gofishing")
+    @GetMapping("gofishing")
     public String getFishingTripFrom(Model model){
         model.addAttribute("fishingTripForm", new CreateFishingTrip());
         return "new-trip";
     }
 
-    @PostMapping("/gofishing")
+    @PostMapping("gofishing")
     public String createFishingTripFrom(@Valid @ModelAttribute(name = "fishingTripForm") CreateFishingTrip fishingTripForm, @AuthenticationPrincipal UserDetails appUser, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
