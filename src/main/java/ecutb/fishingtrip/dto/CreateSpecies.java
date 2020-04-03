@@ -37,6 +37,9 @@ public class CreateSpecies {
     }
 
     public String getFishingLure() {
+        if(this.fishingLure.isEmpty()){
+            return fishingLure = "Not specified";
+        }
         return fishingLure;
     }
 
@@ -45,6 +48,9 @@ public class CreateSpecies {
     }
 
     public String getDescription() {
+        if(this.description.isEmpty()){
+            return description = "No description";
+        }
         return description;
     }
 

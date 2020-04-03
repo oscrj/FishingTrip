@@ -22,13 +22,11 @@ public class FishingTripServiceImpl implements FishingTripService {
 
     private FishingTripRepository fishingTripRepository;
     private AppUserRepository appUserRepository;
-    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public FishingTripServiceImpl(FishingTripRepository fishingTripRepository, AppUserRepository appUserRepository, BCryptPasswordEncoder passwordEncoder) {
+    public FishingTripServiceImpl(FishingTripRepository fishingTripRepository, AppUserRepository appUserRepository) {
         this.fishingTripRepository = fishingTripRepository;
         this.appUserRepository = appUserRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -53,7 +51,7 @@ public class FishingTripServiceImpl implements FishingTripService {
 
     @Override
     public FishingTrip saveAndUpdate(FishingTrip fishingTrip) {
-        return null;
+        return fishingTripRepository.save(fishingTrip);
     }
 
     @Override
@@ -69,5 +67,11 @@ public class FishingTripServiceImpl implements FishingTripService {
     @Override
     public List<FishingTrip> findByFishingMethod(String method) {
         return fishingTripRepository.findByFishingMethod(method);
+    }
+
+    @Override
+    public boolean delete(String fishingTripId) {
+        fishingTripRepository.deleteById(fishingTripId);
+        return fishingTripRepository.existsById(fishingTripId);
     }
 }

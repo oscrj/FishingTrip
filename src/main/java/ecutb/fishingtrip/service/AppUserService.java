@@ -41,4 +41,11 @@ public interface AppUserService {
      * @return
      */
     Optional<AppUser> findByUserName(String userName);
+
+    /**
+     *
+     * @param appUserId
+     * @return
+     */
+    boolean delete(String appUserId);
 }

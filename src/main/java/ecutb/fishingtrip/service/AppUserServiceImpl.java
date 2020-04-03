@@ -78,4 +78,10 @@ public class AppUserServiceImpl implements AppUserService {
     public Optional<AppUser> findByUserName(String userName) {
         return appUserRepository.findByUserNameIgnoreCase(userName);
     }
+
+    @Override
+    public boolean delete(String appUserId) {
+        appUserRepository.deleteById(appUserId);
+        return appUserRepository.existsById(appUserId);
+    }
 }

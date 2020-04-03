@@ -22,4 +22,6 @@ public interface FishingTripService{
 
     List<FishingTrip> findByFishingMethod(String method);
 
+    boolean delete(String fishingTripId);
+
 }

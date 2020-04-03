@@ -3,8 +3,23 @@ body{
     color: lightgrey;
 }
 
-button{
-    border-radius: 0;
+/* chromium */
+input ::-webkit-inner-spin-button,
+input ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+/* FireFox */
+input {
+    -moz-appearance: textfield;
 }
 
 #navigation{
