@@ -13,6 +13,7 @@ public class CreateFishingTrip {
     @NotBlank(message = SPECIFY_WATER_TYPE)
     @Size(min = 2, max = 150, message = WATER_FORMAT_MESSAGE)
     private String waterType;
+    @Size(min = 1, max = 255, message = LOCATION_FORMAT_MESSAGE)
     private String location;
 
     public String getFishingMethod() {

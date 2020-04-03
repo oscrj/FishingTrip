@@ -3,6 +3,7 @@ package ecutb.fishingtrip.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Objects;
 

@@ -11,6 +11,7 @@ public class ValidationMessages {
     public static final String SPECIFY_FISHING_METHOD = "Specify fishing method";
     public static final String SPECIFY_WATER_TYPE = "Specify water type";
     public static final String WATER_FORMAT_MESSAGE = "Need to be between 2 - 150 characters";
+    public static final String LOCATION_FORMAT_MESSAGE = "Need to be between 1 - 255 characters";
 
     public static final String SPECIFY_SPECIES = "Specify specie";
 }

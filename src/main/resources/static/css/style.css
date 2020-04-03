@@ -3,6 +3,10 @@ body{
     color: lightgrey;
 }
 
+button{
+    border-radius: 0;
+}
+
 #navigation{
     border-bottom: 1px solid lightgrey;
 }

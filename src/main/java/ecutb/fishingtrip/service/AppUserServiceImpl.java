@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -28,6 +29,11 @@ public class AppUserServiceImpl implements AppUserService {
         this.appUserRepository = appUserRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
+    }
+
+    @Override
+    public List<AppUser> findAll() {
+        return appUserRepository.findAll();
     }
 
     @Override

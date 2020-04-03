@@ -29,7 +29,7 @@ public class AppUserController {
         return "register-user";
     }
 
-    @PostMapping("register")
+    @PostMapping("/register")
     public String registerForm(@Valid @ModelAttribute(name = "form") CreateAppUser form, BindingResult bindingResult){
         // Check with database if there already is a user with this username.
         if(appUserService.findByUserName(form.getUserName()).isPresent()){

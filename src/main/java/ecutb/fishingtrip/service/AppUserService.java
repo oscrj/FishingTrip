@@ -3,9 +3,17 @@ package ecutb.fishingtrip.service;
 import ecutb.fishingtrip.dto.CreateAppUser;
 import ecutb.fishingtrip.entity.AppUser;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface AppUserService {
+
+    /**
+     * Find all appUsers in database.
+     * @return a list of all appUsers.
+     */
+    List<AppUser> findAll();
+
     /**
      *
      * @param appUser
