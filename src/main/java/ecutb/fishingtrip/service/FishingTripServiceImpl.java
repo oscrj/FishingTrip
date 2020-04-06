@@ -36,7 +36,7 @@ public class FishingTripServiceImpl implements FishingTripService {
 
     @Override
     public Optional<FishingTrip> findByFishingTripId(String id) {
-        return fishingTripRepository.findById(id);
+        return fishingTripRepository.findByFishingTripId(id);
     }
 
     @Override

@@ -51,8 +51,7 @@ public class AppUserController {
         }
 
         AppUser appUser = appUserService.registerNew(form);
-        //return "redirect:/login";
-        return "redirect:/users/"+appUser.getUserName();
+        return "redirect:/login";
     }
 
     @GetMapping("/users/{username}")

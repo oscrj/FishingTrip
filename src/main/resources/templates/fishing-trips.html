@@ -24,12 +24,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td><span th:text="${fishingTrip.fishingMethod}"></span></td>
-            <td><span th:text="${fishingTrip.waterType}"></span></td>
-            <td><span th:text="${fishingTrip.location}"></span></td>
-            <td><span th:text="${fishingTrip.formattedDate}"></span></td>
-            <td> <a class="btn btn-success btn-sm" th:href="@{/fishing/{fishingTripId}/catch}">Add Catch</a></td>
+        <tr th:each="trip : ${trips}">
+            <td><span th:text="${trip.fishingMethod}"></span></td>
+            <td><span th:text="${trip.waterType}"></span></td>
+            <td><span th:text="${trip.location}"></span></td>
+            <td><span th:text="${trip.formattedDate}"></span></td>
+            <td> <a class="btn btn-success btn-sm" th:href="">Add Catch</a></td>
             <td>
                 <!-- <form th:action="@{delete}" method="post">
                     <input type="hidden" name="id" id="id" th:value="${fishingTrip.fishingTripId}"/>
