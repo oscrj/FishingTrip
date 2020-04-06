@@ -42,7 +42,6 @@ public class FishingTripController {
 
     @PostMapping("gofishing")
     public String createFishingTripFrom(@Valid @ModelAttribute(name = "fishingTripForm") CreateFishingTrip fishingTripForm, @AuthenticationPrincipal UserDetails appUser, BindingResult bindingResult){
-
         if(bindingResult.hasErrors()){
             return "new-trip";
         }
@@ -54,6 +53,7 @@ public class FishingTripController {
         return "redirect:/index";
     }
 
+    /*
     // create new catch
     @GetMapping("/catch")
     public String getCatchForm(Model model){
@@ -63,7 +63,7 @@ public class FishingTripController {
 
     // create and save catch
     @PostMapping("/catch")
-    public String createNewCatch(@Valid @ModelAttribute(name = "catchForm") CreateSpecies specie, @AuthenticationPrincipal UserDetails appUser, BindingResult bindingResult){
+    public String createNewCatch(@Valid @ModelAttribute(name = "catchForm") CreateSpecies specie, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             return "new-catch";
@@ -74,6 +74,6 @@ public class FishingTripController {
         // should return a different view.
         return "redirect:/index";
     }
-
+     */
 
 }

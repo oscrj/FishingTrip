@@ -31,6 +31,7 @@ public class CreateAppUser {
     private String password;
     @NotBlank(message = PASSWORD_CONFIRMATION_MESSAGE)
     private String confirmPassword;
+    private boolean admin;
 
     public String getUserName() {
         return userName;
@@ -78,5 +79,13 @@ public class CreateAppUser {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }

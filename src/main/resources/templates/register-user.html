@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
-    <link rel="stylesheet" th:href="@{css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
@@ -82,6 +82,11 @@
                                 <span class="form-error" th:text="${err}"></span>
                             </li>
                         </ul>
+                    </div>
+                    <!-- Need to fix checkbox -->
+                    <div sec:authorize="hasAuthority('ADMIN')">
+                        <label for="isAdmin">Create Admin</label>
+                        <input type="checkbox" id="isAdmin" value="true" th:field="*{admin}">
                     </div>
                     <div class="form-group mb-2">
                         <button type="submit" class="mt-2 btn btn-outline-light text-light">Confirm</button>

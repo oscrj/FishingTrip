@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
-    <link rel="stylesheet" th:href="@{css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
@@ -14,17 +14,17 @@
 <nav th:fragment="navigation" class="navbar navbar-dark bg-dark" id="navigation">
     <ul class="nav">
         <li class="nav-item">
-            <a class="navbar-brand text-light" th:href="@{index}"><img class="nav-logo" th:src="@{img/FishingTripLight.png}" alt="FishingTrip"></a>
+            <a class="navbar-brand text-light" th:href="@{/index}"><img class="nav-logo" th:src="@{/img/FishingTripLight.png}" alt="FishingTrip"></a>
         </li>
         <!--    <li class="nav-item">
             <a class="nav-link text-light" href="#">Register</a>
         </li>
             <li class="nav-item">
             <a class="nav-link text-light" href="#">Link 2</a>
+        </li>  -->
+        <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+            <a class="nav-link text-light" th:href="@{/register}">Register user</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-light" href="#">Link 3</a>
-        </li>   -->
     </ul>
     <form th:action="@{/logout}" class="form-inline" method="post">
         <div sec:authorize="isAuthenticated()">

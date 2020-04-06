@@ -58,15 +58,18 @@ public class AppUserServiceImpl implements AppUserService {
         //  USER role
         userRoleSet.add(userRole);
 
-        //  Check if newUser shall be ADMIN?
         AppUser newUser = new AppUser(form.getUserName(),form.getFirstName(), form.getLastName(), form.getEmail(), passwordEncoder.encode(form.getPassword()), LocalDate.now());
         //  Save newUser in database
         newUser = appUserRepository.save(newUser);
+
+        //  Check if newUser shall be ADMIN?
+        if(form.isAdmin()){
+            newUser.setAppUserRoles(adminRoleSet);
+            return newUser;
+        }
         //  Set role to newUser using Set of roles(USER only).
         newUser.setAppUserRoles(userRoleSet);
-
         return newUser;
-
     }
 
     @Override

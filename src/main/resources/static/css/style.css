@@ -41,6 +41,14 @@ input {
     background: #3a4750;
 }
 
+.form-error {
+    text-align: left;
+    display: flex;
+    color: red;
+    font-size: small;
+    font-style: italic;
+}
+
 .access-denied{
     background: rgba(211,211,211,0.2);
 }

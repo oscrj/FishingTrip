@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface FishingTripRepository extends CrudRepository<FishingTrip, String> {
 
-    Optional<FishingTrip> findById(String id);
+    Optional<FishingTrip> findByFishingTripId(String id);
 
     List<FishingTrip> findAll();
 

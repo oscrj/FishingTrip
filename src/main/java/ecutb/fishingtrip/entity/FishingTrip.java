@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Entity
@@ -74,6 +75,10 @@ public class FishingTrip {
 
     public void setAppUser(AppUser appUser) {
         this.appUser = appUser;
+    }
+
+    public String getFormattedDate(){
+        return date.format(DateTimeFormatter.ofPattern("dd MMMM yy"));
     }
 
     @Override

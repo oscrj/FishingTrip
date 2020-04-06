@@ -40,6 +40,7 @@ public class FishingTripServiceImpl implements FishingTripService {
     }
 
     @Override
+    @Transactional(rollbackFor = RuntimeException.class)
     public FishingTrip newFishingTrip(CreateFishingTrip form, String userName) {
         AppUser loggedInUser = appUserRepository.findByUserNameIgnoreCase(userName).orElseThrow(() -> new UsernameNotFoundException("Requested user could not be found"));
 

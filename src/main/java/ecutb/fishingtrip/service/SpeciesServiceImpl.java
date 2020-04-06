@@ -6,10 +6,13 @@ import ecutb.fishingtrip.dto.CreateSpecies;
 import ecutb.fishingtrip.entity.Species;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+
+import static ecutb.fishingtrip.exception.ExceptionsSupply.USER_NOT_FOUND;
 
 @Service
 public class SpeciesServiceImpl implements SpeciesService {
@@ -34,13 +37,12 @@ public class SpeciesServiceImpl implements SpeciesService {
     }
 
     @Override
-    public Species newCatch(CreateSpecies form){
-
-        /*
-        Find a way too bind catch with fishingTrip ID...
-         */
+    @Transactional(rollbackFor = RuntimeException.class)
+    public Species newCatch(CreateSpecies form, String fishingTripId){
 
         Species newCatch = new Species(form.getSpecies(), form.getLength(), form.getWeight(), form.getFishingLure(), form.getDescription(), LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+        // bind catch to fishingTrip using id.
+        newCatch.setFishingTrip(fishingTripRepository.findById(fishingTripId).orElseThrow(IllegalArgumentException::new));
         return speciesRepository.save(newCatch);
     }
 

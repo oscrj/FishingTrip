@@ -8,15 +8,19 @@
     <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     <meta charset="UTF-8">
-    <title>Fishing Trip</title>
+    <title>User</title>
 </head>
 <body>
     <nav th:replace="navbar :: navigation"></nav>
-    <div class="wrapper container mt-lg-5">
-        <div>
-            <H1>Fishing Trip</H1>
-        </div>
-
+    <div class="container wrapper mt-lg-5">
+        <p>Username:</p><br>
+        <p th:text="${user.userName}" ></p><br>
+        <p>Email:</p><br>
+        <p th:text="${user.email}" ></p><br>
+        <p>Name:</p>
+        <p th:text="${user.firstName +' '+ user.lastName}" ></p><br>
+        <p>Registration date:</p><br>
+        <p th:text="${user.regDate}"></p><br>
     </div>
 </body>
 </html>
