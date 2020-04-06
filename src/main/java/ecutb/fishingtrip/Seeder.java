@@ -55,11 +55,11 @@ public class Seeder {
 
         AppUser appUser2 = new AppUser("test", "John","Doe", "john.doe@gmail.com", passwordEncoder.encode("password12"), LocalDate.now());
         appUser2.setAppUserRoles(userRole);
-        appUserRepository.save(appUser);
+        appUserRepository.save(appUser2);
 
         AppUser appUser3 = new AppUser("test2", "Jane","Doe", "jane.doe@gmail.com", passwordEncoder.encode("password123"), LocalDate.now());
         appUser3.setAppUserRoles(userRole);
-        appUserRepository.save(appUser2);
+        appUserRepository.save(appUser3);
 
     }
 }
