@@ -11,7 +11,7 @@ public interface SpeciesService {
 
     List<Species> findByFishingTrip(String fishingTripId);
 
-    Species newCatch(CreateSpecies form, String fishingTripId);
+    Species newCatch(CreateSpecies form);
 
     Species saveAndUpdate(Species species);
 

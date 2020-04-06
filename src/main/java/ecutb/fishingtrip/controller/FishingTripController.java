@@ -12,15 +12,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.lang.reflect.Field;
 
-import static ecutb.fishingtrip.constants.message.ValidationMessages.WATER_FORMAT_MESSAGE;
+
+
 
 @Controller
 public class FishingTripController {
@@ -34,13 +33,13 @@ public class FishingTripController {
         this.speciesService = speciesService;
     }
 
-    @GetMapping("gofishing")
+    @GetMapping("/fishing/gofishing")
     public String getFishingTripFrom(Model model){
         model.addAttribute("fishingTripForm", new CreateFishingTrip());
         return "new-trip";
     }
 
-    @PostMapping("gofishing")
+    @PostMapping("/fishing/gofishing")
     public String createFishingTripFrom(@Valid @ModelAttribute(name = "fishingTripForm") CreateFishingTrip fishingTripForm, @AuthenticationPrincipal UserDetails appUser, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "new-trip";
@@ -53,7 +52,6 @@ public class FishingTripController {
         return "redirect:/index";
     }
 
-    /*
     // create new catch
     @GetMapping("/catch")
     public String getCatchForm(Model model){
@@ -74,6 +72,6 @@ public class FishingTripController {
         // should return a different view.
         return "redirect:/index";
     }
-     */
+
 
 }

@@ -30,7 +30,7 @@
                     </div>
                     <div th:if="${#fields.hasErrors('fishingMethod')}">
                         <ul class="p-0" >
-                            <li  th:each="err : ${#fields.errors('fishingMethod')}">
+                            <li class="li-error" th:each="err : ${#fields.errors('fishingMethod')}">
                                 <span class="form-error" th:text="${err}"></span>
                             </li>
                         </ul>
@@ -49,7 +49,7 @@
                     </div>
                     <div th:if="${#fields.hasErrors('waterType')}">
                         <ul class="p-0" >
-                            <li  th:each="err : ${#fields.errors('waterType')}">
+                            <li class="li-error" th:each="err : ${#fields.errors('waterType')}">
                                 <span class="form-error" th:text="${err}"></span>
                             </li>
                         </ul>

@@ -30,7 +30,7 @@
                     </div>
                     <div th:if="${#fields.hasErrors('species')}">
                         <ul class="p-0" >
-                            <li  th:each="err : ${#fields.errors('species')}">
+                            <li class="li-error" th:each="err : ${#fields.errors('species')}">
                                 <span class="form-error" th:text="${err}"></span>
                             </li>
                         </ul>

@@ -38,11 +38,11 @@ public class SpeciesServiceImpl implements SpeciesService {
 
     @Override
     @Transactional(rollbackFor = RuntimeException.class)
-    public Species newCatch(CreateSpecies form, String fishingTripId){
+    public Species newCatch(CreateSpecies form){
 
         Species newCatch = new Species(form.getSpecies(), form.getLength(), form.getWeight(), form.getFishingLure(), form.getDescription(), LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
         // bind catch to fishingTrip using id.
-        newCatch.setFishingTrip(fishingTripRepository.findById(fishingTripId).orElseThrow(IllegalArgumentException::new));
+        //newCatch.setFishingTrip(fishingTripRepository.findById(fishingTripId).orElseThrow(IllegalArgumentException::new));
         return speciesRepository.save(newCatch);
     }
 

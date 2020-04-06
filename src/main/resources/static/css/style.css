@@ -48,6 +48,9 @@ input {
     font-size: small;
     font-style: italic;
 }
+.li-error{
+    list-style: none;
+}
 
 .access-denied{
     background: rgba(211,211,211,0.2);
