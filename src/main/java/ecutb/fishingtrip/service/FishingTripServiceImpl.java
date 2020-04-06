@@ -43,7 +43,7 @@ public class FishingTripServiceImpl implements FishingTripService {
     public FishingTrip newFishingTrip(CreateFishingTrip form, String userName) {
         AppUser loggedInUser = appUserRepository.findByUserNameIgnoreCase(userName).orElseThrow(() -> new UsernameNotFoundException("Requested user could not be found"));
 
-        FishingTrip newFishingTrip = new FishingTrip(form.getFishingMethod(), form.getWaterType(), form.getCheckLocationIsEmpty(), LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+        FishingTrip newFishingTrip = new FishingTrip(form.getFishingMethod(), form.getWaterType(), form.getCheckLocationIsEmpty(), LocalDate.now());
         newFishingTrip.setAppUser(loggedInUser);
 
         return fishingTripRepository.save(newFishingTrip);

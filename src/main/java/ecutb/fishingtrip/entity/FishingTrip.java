@@ -18,14 +18,14 @@ public class FishingTrip {
     private String fishingMethod;
     private String waterType;
     private String location;
-    private LocalDateTime date;
+    private LocalDate date;
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "username", referencedColumnName = "username")
     private AppUser appUser;
 
     public FishingTrip(){}
 
-    public FishingTrip(String fishingMethod, String waterType, String location, LocalDateTime date) {
+    public FishingTrip(String fishingMethod, String waterType, String location, LocalDate date) {
         this.fishingMethod = fishingMethod;
         this.waterType = waterType;
         this.location = location;
@@ -60,11 +60,11 @@ public class FishingTrip {
         this.location = location;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

@@ -21,25 +21,67 @@
                         <label for="username">Username</label>
                         <input class="form-control" type="text" id="username" name="username" placeholder="Username" th:field="*{userName}" />
                     </div>
+                    <div th:if="${#fields.hasErrors('userName')}">
+                        <ul class="p-0" >
+                            <li  th:each="err : ${#fields.errors('userName')}">
+                                <span class="form-error" th:text="${err}"></span>
+                            </li>
+                        </ul>
+                    </div>
                     <div class="form-group mb-2">
                         <label for="firstName">First Name</label>
                         <input class="form-control" type="text" id="firstName" name="firstName" placeholder="First Name" th:field="*{firstName}" />
+                    </div>
+                    <div th:if="${#fields.hasErrors('firstName')}">
+                        <ul class="p-0" >
+                            <li  th:each="err : ${#fields.errors('firstName')}">
+                                <span class="form-error" th:text="${err}"></span>
+                            </li>
+                        </ul>
                     </div>
                     <div class="form-group mb-2">
                         <label for="lastName">Last Name</label>
                         <input class="form-control" type="text" id="lastName" name="lastName" placeholder="Last Name" th:field="*{lastName}" />
                     </div>
+                    <div th:if="${#fields.hasErrors('lastName')}">
+                        <ul class="p-0" >
+                            <li  th:each="err : ${#fields.errors('lastName')}">
+                                <span class="form-error" th:text="${err}"></span>
+                            </li>
+                        </ul>
+                    </div>
                     <div class="form-group mb-2">
                         <label for="email">Email</label>
                         <input class="form-control" type="email" id="email" name="email" placeholder="email@example.com" th:field="*{email}" />
+                    </div>
+                    <div th:if="${#fields.hasErrors('email')}">
+                        <ul class="p-0" >
+                            <li  th:each="err : ${#fields.errors('email')}">
+                                <span class="form-error" th:text="${err}"></span>
+                            </li>
+                        </ul>
                     </div>
                     <div class="form-group mb-2">
                         <label for="password">Password</label>
                         <input class="form-control" type="password" id="password" name="password" placeholder="Password" th:field="*{password}" />
                     </div>
+                    <div th:if="${#fields.hasErrors('password')}">
+                        <ul class="p-0" >
+                            <li  th:each="err : ${#fields.errors('password')}">
+                                <span class="form-error" th:text="${err}"></span>
+                            </li>
+                        </ul>
+                    </div>
                     <div class="form-group mb-2">
                         <label for="confirmPassword">Password</label>
                         <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" placeholder="Password" th:field="*{confirmPassword}" />
+                    </div>
+                    <div th:if="${#fields.hasErrors('confirmPassword')}">
+                        <ul class="p-0" >
+                            <li  th:each="err : ${#fields.errors('confirmPassword')}">
+                                <span class="form-error" th:text="${err}"></span>
+                            </li>
+                        </ul>
                     </div>
                     <div class="form-group mb-2">
                         <button type="submit" class="mt-2 btn btn-outline-light text-light">Confirm</button>

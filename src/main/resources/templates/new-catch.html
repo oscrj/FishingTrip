@@ -28,6 +28,13 @@
                             <option value="Salmon">Salmon</option>
                         </select>
                     </div>
+                    <div th:if="${#fields.hasErrors('species')}">
+                        <ul class="p-0" >
+                            <li  th:each="err : ${#fields.errors('species')}">
+                                <span class="form-error" th:text="${err}"></span>
+                            </li>
+                        </ul>
+                    </div>
 
                     <div class="form-group mb-2">
                         <label for="length">Length (Centimeter)</label>

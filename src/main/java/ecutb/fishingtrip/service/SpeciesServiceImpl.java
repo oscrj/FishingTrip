@@ -7,6 +7,8 @@ import ecutb.fishingtrip.entity.Species;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
@@ -38,8 +40,7 @@ public class SpeciesServiceImpl implements SpeciesService {
         Find a way too bind catch with fishingTrip ID...
          */
 
-        Species newCatch = new Species(form.getSpecies(), form.getLength(), form.getWeight(), form.getFishingLure(), form.getDescription());
-
+        Species newCatch = new Species(form.getSpecies(), form.getLength(), form.getWeight(), form.getFishingLure(), form.getDescription(), LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
         return speciesRepository.save(newCatch);
     }
 

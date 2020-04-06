@@ -28,15 +28,36 @@
                             <option value="Ice Fishing">Ice Fishing</option>
                         </select>
                     </div>
+                    <div th:if="${#fields.hasErrors('fishingMethod')}">
+                        <ul class="p-0" >
+                            <li  th:each="err : ${#fields.errors('fishingMethod')}">
+                                <span class="form-error" th:text="${err}"></span>
+                            </li>
+                        </ul>
+                    </div>
 
-                    <div class="form-group mb-2">
-                        <label for="waterType">Water Type</label>
-                        <input class="form-control" type="text" id="waterType" name="waterType" placeholder="Ex. Ocean, Lake, River, Pond" th:field="*{waterType}" />
+                    <div class="form-group  mb-2">
+                        <label for="waterType">Select Fishing Method</label>
+                        <select class="form-control" id="waterType" th:field="*{waterType}">
+                            <option value="Lake">Lake</option>
+                            <option value="River">River</option>
+                            <option value="Arkipelago">Arkipelago</option>
+                            <option value="Ocean">Ocean</option>
+                            <option value="Pond">Pond</option>
+                            <option value="Stream">Stream</option>
+                        </select>
+                    </div>
+                    <div th:if="${#fields.hasErrors('waterType')}">
+                        <ul class="p-0" >
+                            <li  th:each="err : ${#fields.errors('waterType')}">
+                                <span class="form-error" th:text="${err}"></span>
+                            </li>
+                        </ul>
                     </div>
 
                     <div class="form-group mb-2">
                         <label for="location">Location</label>
-                        <input class="form-control" type="text" id="location" name="location" placeholder="Your location.." th:field="*{location}" />
+                        <input class="form-control" type="text" id="location" placeholder="Your location.." th:field="*{location}" />
                     </div>
 
                     <div class="form-group mb-2">

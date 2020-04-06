@@ -3,6 +3,7 @@ package ecutb.fishingtrip.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +18,7 @@ public class Species {
     private double weight;
     private String fishingLure;
     private String description;
+    private LocalDateTime timeStamp;
 
     @ManyToOne()
     @JoinColumn(name = "fishingTrip_id")
@@ -24,12 +26,13 @@ public class Species {
 
     public Species(){}
 
-    public Species(String species, double length, double weight, String fishingLure, String description) {
+    public Species(String species, double length, double weight, String fishingLure, String description, LocalDateTime timeStamp) {
         this.species = species;
         this.length = length;
         this.weight = weight;
         this.fishingLure = fishingLure;
         this.description = description;
+        this.timeStamp = timeStamp;
     }
 
     public String getSpeciesId() {
@@ -76,6 +79,14 @@ public class Species {
         this.description = description;
     }
 
+    public LocalDateTime getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(LocalDateTime timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
     public FishingTrip getFishingTrip() {
         return fishingTrip;
     }
@@ -89,17 +100,18 @@ public class Species {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Species species1 = (Species) o;
-        return Objects.equals(speciesId, species1.speciesId) &&
+        return Double.compare(species1.length, length) == 0 &&
+                Double.compare(species1.weight, weight) == 0 &&
+                Objects.equals(speciesId, species1.speciesId) &&
                 Objects.equals(species, species1.species) &&
-                Objects.equals(length, species1.length) &&
-                Objects.equals(weight, species1.weight) &&
                 Objects.equals(fishingLure, species1.fishingLure) &&
-                Objects.equals(description, species1.description);
+                Objects.equals(description, species1.description) &&
+                Objects.equals(timeStamp, species1.timeStamp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(speciesId, species, length, weight, fishingLure, description);
+        return Objects.hash(speciesId, species, length, weight, fishingLure, description, timeStamp);
     }
 
     @Override
@@ -107,10 +119,11 @@ public class Species {
         return "Species{" +
                 "speciesId='" + speciesId + '\'' +
                 ", species='" + species + '\'' +
-                ", length='" + length + '\'' +
-                ", weight='" + weight + '\'' +
+                ", length=" + length +
+                ", weight=" + weight +
                 ", fishingLure='" + fishingLure + '\'' +
                 ", description='" + description + '\'' +
+                ", timeStamp=" + timeStamp +
                 '}';
     }
 }
