@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
 
 import static ecutb.fishingtrip.exception.ExceptionsSupply.USER_NOT_FOUND;
 
@@ -25,6 +26,11 @@ public class SpeciesServiceImpl implements SpeciesService {
     public SpeciesServiceImpl(SpeciesRepository speciesRepository, FishingTripRepository fishingTripRepository) {
         this.speciesRepository = speciesRepository;
         this.fishingTripRepository = fishingTripRepository;
+    }
+
+    @Override
+    public Optional<Species> findBySpeciesId(String SpeciesId) {
+        return speciesRepository.findBySpeciesId(SpeciesId);
     }
 
     @Override

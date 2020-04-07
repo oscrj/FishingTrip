@@ -113,6 +113,20 @@ input {
     height: 45px;
 }
 
+.update-row{
+    margin: 0px;
+    padding-top: 7px;
+}
+
+.update{
+    margin: 0;
+    padding: 0;
+}
+.update img{
+    width: 18px;
+    height: 18px;
+}
+
 .btn-add-catch{
     display: flex;
     justify-content: right;

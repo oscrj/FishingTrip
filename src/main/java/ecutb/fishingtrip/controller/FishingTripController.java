@@ -2,6 +2,7 @@ package ecutb.fishingtrip.controller;
 
 import ecutb.fishingtrip.dto.CreateFishingTrip;
 import ecutb.fishingtrip.dto.CreateSpecies;
+import ecutb.fishingtrip.dto.UpdateSpecies;
 import ecutb.fishingtrip.entity.FishingTrip;
 import ecutb.fishingtrip.entity.Species;
 import ecutb.fishingtrip.service.FishingTripService;
@@ -94,6 +95,51 @@ public class FishingTripController {
         Species newCatch = speciesService.newCatch(specie, fishingTripId);
         return "redirect:/fishing/"+fishingTripId;
     }
+
+    /**
+     * Update catch
+     */
+    @GetMapping("/fishing/catch/update")
+    public String updateCatchForm(@RequestParam("speciesId") String speciesId, @RequestParam("fishingTripId") String fishingTripId, Model model){
+        UpdateSpecies updateSpecies = new UpdateSpecies();
+        Species species = speciesService.findBySpeciesId(speciesId).orElseThrow(IllegalArgumentException::new);
+
+        updateSpecies.setSpecies(species.getSpecies());
+        updateSpecies.setLength(species.getLength());
+        updateSpecies.setWeight(species.getWeight());
+        updateSpecies.setFishingLure(species.getFishingLure());
+        updateSpecies.setDescription(species.getDescription());
+
+        model.addAttribute("updateSpeciesForm", new UpdateSpecies());
+
+        // Need fishingTrip to later redirect to this fishingTrip.
+        FishingTrip fishingTrip = fishingTripService.findByFishingTripId(fishingTripId).orElseThrow(IllegalArgumentException::new);
+        model.addAttribute("fishingTrip", fishingTrip);
+        //  model.addAttribute("species", species);
+        return "update-catch";
+    }
+
+    @PostMapping("/fishing/catch/update")
+    public String createUpdateCatch(@RequestParam("speciesId") String speciesId, @RequestParam("fishingTripId") String fishingTripId,
+                                    @Valid @ModelAttribute("updateSpeciesForm") UpdateSpecies updateSpecies, BindingResult bindingResult){
+
+        Species originalSpecies = speciesService.findBySpeciesId(speciesId).orElseThrow(IllegalArgumentException::new);
+
+        if(bindingResult.hasErrors()){
+            return "update-catch";
+        }
+
+        originalSpecies.setSpecies(updateSpecies.getSpecies());
+        originalSpecies.setLength(updateSpecies.getLength());
+        originalSpecies.setWeight(updateSpecies.getWeight());
+        originalSpecies.setFishingLure(updateSpecies.getFishingLure());
+        originalSpecies.setDescription(updateSpecies.getDescription());
+
+        speciesService.saveAndUpdate(originalSpecies);
+
+        return "redirect:/fishing/"+fishingTripId;
+    }
+
 
     @GetMapping("/fishing/catch/delete")
     public String deleteCatch(@RequestParam("speciesId") String speciesId, @RequestParam("fishingTripId") String fishingTripId){
