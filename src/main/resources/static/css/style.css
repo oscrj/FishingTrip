@@ -1,6 +1,9 @@
+*{
+    color: lightgrey;
+}
+
 body{
     background: #3a4750;
-    color: lightgrey;
 }
 
 /* chromium */

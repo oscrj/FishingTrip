@@ -16,7 +16,7 @@
         <div class="card w-50 mt-4 mb-3 border-light login-form">
             <div class="card-body">
                 <h5 class="card-title mb-3">New Catch</h5>
-                <form th:action="@{/catch}" th:object="${catchForm}" method="POST">
+                <form th:action="@{/fishing/{fishingTripId}/catch}" th:object="${catchForm}" method="POST">
                     <div class="form-group  mb-2">
                         <label for="species">Select Species</label>
                         <select class="form-control" id="species" th:field="*{species}">

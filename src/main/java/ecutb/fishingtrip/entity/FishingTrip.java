@@ -78,7 +78,7 @@ public class FishingTrip {
     }
 
     public String getFormattedDate(){
-        return date.format(DateTimeFormatter.ofPattern("dd MMMM yy"));
+        return date.format(DateTimeFormatter.ofPattern("dd MMMM yyyy"));
     }
 
     @Override
