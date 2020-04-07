@@ -36,6 +36,11 @@ public class FishingTripController {
         return "fishing-trips";
     }
 
+    @GetMapping("fishing/trips/details")
+    public String details(@RequestParam("fishingTripId") String fishingTripId){
+        return "redirect:/fishing/"+fishingTripId;
+    }
+
     @GetMapping("/fishing/gofishing")
     public String getFishingTripFrom(Model model){
         model.addAttribute("fishingTripForm", new CreateFishingTrip());
@@ -87,9 +92,12 @@ public class FishingTripController {
         }
 
         Species newCatch = speciesService.newCatch(specie, fishingTripId);
-
-        // should return a different view.
         return "redirect:/fishing/"+fishingTripId;
     }
-    
+
+    @GetMapping("/fishing/catch/delete")
+    public String deleteCatch(@RequestParam("speciesId") String speciesId, @RequestParam("fishingTripId") String fishingTripId){
+        speciesService.delete(speciesId);
+        return "redirect:/fishing/"+fishingTripId;
+    }
 }
