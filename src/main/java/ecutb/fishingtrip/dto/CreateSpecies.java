@@ -38,7 +38,7 @@ public class CreateSpecies {
 
     public String getFishingLure() {
         if(this.fishingLure.isEmpty()){
-            return fishingLure = "Not specified";
+            return fishingLure = "Lure not specified";
         }
         return fishingLure;
     }

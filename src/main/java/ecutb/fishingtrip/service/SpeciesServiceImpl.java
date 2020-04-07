@@ -3,6 +3,7 @@ package ecutb.fishingtrip.service;
 import ecutb.fishingtrip.data.FishingTripRepository;
 import ecutb.fishingtrip.data.SpeciesRepository;
 import ecutb.fishingtrip.dto.CreateSpecies;
+import ecutb.fishingtrip.entity.FishingTrip;
 import ecutb.fishingtrip.entity.Species;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,11 +39,12 @@ public class SpeciesServiceImpl implements SpeciesService {
 
     @Override
     @Transactional(rollbackFor = RuntimeException.class)
-    public Species newCatch(CreateSpecies form){
+    public Species newCatch(CreateSpecies form, String fishingTripId){
 
         Species newCatch = new Species(form.getSpecies(), form.getLength(), form.getWeight(), form.getFishingLure(), form.getDescription(), LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
         // bind catch to fishingTrip using id.
-        //newCatch.setFishingTrip(fishingTripRepository.findById(fishingTripId).orElseThrow(IllegalArgumentException::new));
+        FishingTrip fishingTrip = fishingTripRepository.findByFishingTripId(fishingTripId).orElseThrow(IllegalArgumentException::new);
+        newCatch.setFishingTrip(fishingTrip);
         return speciesRepository.save(newCatch);
     }
 

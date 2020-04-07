@@ -6,7 +6,7 @@ body{
     background: #3a4750;
 }
 
-/* chromium */
+/* chromium
 input ::-webkit-inner-spin-button,
 input ::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -15,14 +15,25 @@ input ::-webkit-outer-spin-button {
     margin: 0;
 }
 
+*/
 select {
     -moz-appearance: none;
     -webkit-appearance: none;
+    color: black;
+}
+option{
+    color: black;
 }
 
-/* FireFox */
+/*
+ FireFox
 input {
     -moz-appearance: textfield;
+}
+*/
+
+#isAdmin{
+    color: black;
 }
 
 #navigation{
@@ -38,6 +49,31 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.index-container{
+    background: rgba(211,211,211,0.2);
+
+}
+
+.index-header{
+    border-bottom: 1px solid lightgrey;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.index-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+.index-btn{
+    margin: 10px 0px;
+    width: 100%;
 }
 
 .login-form{
@@ -66,4 +102,20 @@ input {
 
 .access-message{
     margin: 20px;
+}
+
+.fishingTripTable{
+    border-bottom: 1px solid lightgrey;
+}
+
+.fish-picture{
+    width: 45px;
+    height: 45px;
+}
+
+.btn-add-catch{
+    display: flex;
+    justify-content: right;
+    align-items: start;
+    margin: 0;
 }

@@ -18,10 +18,6 @@ public interface FishingTripService{
 
     List<FishingTrip> findByAppUser(String userName);
 
-    List<FishingTrip> findByWaterType(String WaterType);
-
-    List<FishingTrip> findByFishingMethod(String method);
-
     boolean delete(String fishingTripId);
 
 }

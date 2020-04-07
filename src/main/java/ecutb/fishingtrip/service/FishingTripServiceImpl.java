@@ -60,15 +60,6 @@ public class FishingTripServiceImpl implements FishingTripService {
         return fishingTripRepository.findByAppUser(userName);
     }
 
-    @Override
-    public List<FishingTrip> findByWaterType(String waterType) {
-        return fishingTripRepository.findByWaterType(waterType);
-    }
-
-    @Override
-    public List<FishingTrip> findByFishingMethod(String method) {
-        return fishingTripRepository.findByFishingMethod(method);
-    }
 
     @Override
     public boolean delete(String fishingTripId) {

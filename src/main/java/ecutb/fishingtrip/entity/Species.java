@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Entity
@@ -93,6 +94,10 @@ public class Species {
 
     public void setFishingTrip(FishingTrip fishingTrip) {
         this.fishingTrip = fishingTrip;
+    }
+
+    public String getFormattedDateTime(){
+        return timeStamp.format(DateTimeFormatter.ofPattern("HH:mm"));
     }
 
     @Override

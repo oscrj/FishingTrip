@@ -12,11 +12,34 @@
 </head>
 <body>
     <nav th:replace="navbar :: navigation"></nav>
-    <div class="wrapper container mt-lg-5">
-        <div>
-            <H1>Fishing Trip</H1>
+    <div sec:authorize="isAnonymous()">
+        <div class="wrapper container mt-lg-5">
+            <div class="w-25 index-container">
+                <div class="index-header">
+                    <H1 class="font-weight-light">Fishing Trip</H1>
+                </div>
+                <div class="index-content">
+                    <p>Information</p>
+                </div>
+            </div>
         </div>
-
     </div>
+
+    <div sec:authorize="isAuthenticated()">
+        <div class="wrapper container mt-lg-5">
+            <div class="w-25 index-container">
+                <div class="index-header">
+                    <H1 class="font-weight-light">Fishing Trip</H1>
+                </div>
+                <div class="index-content">
+                    <div class="index-nav w-100">
+                        <a class="index-btn btn btn-outline-light" th:href="@{/fishing/gofishing}">Go Fishing</a><br>
+                        <a class="index-btn btn btn-outline-light" th:href="@{/fishing/trips}">Fishing Trips</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

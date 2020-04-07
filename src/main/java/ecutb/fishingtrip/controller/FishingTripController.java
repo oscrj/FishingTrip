@@ -12,12 +12,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class FishingTripController {
@@ -29,6 +27,13 @@ public class FishingTripController {
     public FishingTripController(FishingTripService fishingTripService, SpeciesService speciesService) {
         this.fishingTripService = fishingTripService;
         this.speciesService = speciesService;
+    }
+
+    @GetMapping("/fishing/trips")
+    public String findAll(@AuthenticationPrincipal UserDetails appUser, Model model){
+        List<FishingTrip> fishingTrips = fishingTripService.findByAppUser(appUser.getUsername());
+        model.addAttribute("fishingTrips", fishingTrips);
+        return "fishing-trips";
     }
 
     @GetMapping("/fishing/gofishing")
@@ -43,6 +48,10 @@ public class FishingTripController {
             return "new-trip";
         }
 
+        if(appUser == null){
+            return "redirect:/login";
+        }
+
         // Create new Fishing Trip by using fishingTripForm and connect this trip to user that is logged in and use that users userName.
         FishingTrip newFishingTrip = fishingTripService.newFishingTrip(fishingTripForm, appUser.getUsername());
 
@@ -51,28 +60,36 @@ public class FishingTripController {
 
     @GetMapping("/fishing/{fishingTripId}")
     public String getFishingTrip(@PathVariable(name = "fishingTripId") String fishingTripId, Model model){
+        // Find fishingTrip using fishingTripId.
         FishingTrip fishingTrip = fishingTripService.findByFishingTripId(fishingTripId).orElseThrow(IllegalArgumentException::new);
         model.addAttribute("fishingTrip", fishingTrip);
+
+        // Find all caught fish from fishingTrip with this Id.
+        List<Species> fishCaught = speciesService.findByFishingTrip(fishingTripId);
+        model.addAttribute("fishCaught", fishCaught);
+
         return "fishing-trip";
     }
 
-    @GetMapping("/fishing/{fishingTripId}/catch")
-    public String getCatchForm(Model model){
+    @GetMapping("/fishing/catch")
+    public String getCatchForm(@RequestParam("fishingTripId") String fishingTripId, Model model){
+        FishingTrip fishingTrip = fishingTripService.findByFishingTripId(fishingTripId).orElseThrow(IllegalArgumentException::new);
+        model.addAttribute("fishingTrip", fishingTrip);
         model.addAttribute("catchForm", new Species());
         return "new-catch";
     }
 
-    @PostMapping("/fishing/{fishingTripId}/catch")
-    public String createNewCatch(@Valid @ModelAttribute(name = "catchForm") CreateSpecies specie, BindingResult bindingResult){
+    @PostMapping("/fishing/catch")
+    public String createNewCatch(@RequestParam("fishingTripId") String fishingTripId, @Valid @ModelAttribute(name = "catchForm") CreateSpecies specie, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             return "new-catch";
         }
 
-        Species newCatch = speciesService.newCatch(specie);
+        Species newCatch = speciesService.newCatch(specie, fishingTripId);
 
         // should return a different view.
-        return "redirect:/index";
+        return "redirect:/fishing/"+fishingTripId;
     }
     
 }
