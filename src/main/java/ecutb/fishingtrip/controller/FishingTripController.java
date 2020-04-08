@@ -1,6 +1,5 @@
 package ecutb.fishingtrip.controller;
 
-import ecutb.fishingtrip.data.SpeciesRepository;
 import ecutb.fishingtrip.dto.CreateFishingTrip;
 import ecutb.fishingtrip.dto.CreateSpecies;
 import ecutb.fishingtrip.dto.UpdateFishingTrip;

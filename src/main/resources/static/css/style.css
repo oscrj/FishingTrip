@@ -41,7 +41,7 @@ input {
 }
 
 .nav-logo{
-    width: 65px;
+    width: 76px;
     height: 56px;
 }
 
@@ -170,4 +170,8 @@ input {
     justify-content: right;
     align-items: start;
     margin: 0;
+}
+
+.search-input{
+    color: black;
 }

@@ -66,5 +66,33 @@ public class Seeder {
         AppUser appUser3 = new AppUser("test2", "Jane","Doe", "jane.doe@gmail.com", passwordEncoder.encode("password123"), LocalDate.now());
         appUser3.setAppUserRoles(userRole);
         appUserRepository.save(appUser3);
+
+        FishingTrip trip = new FishingTrip("Spinning", "Lake", "Bergundasjön", LocalDate.now());
+        trip.setAppUser(appUser);
+        fishingTripRepository.save(trip);
+
+        FishingTrip trip2 = new FishingTrip("Fly Fishing", "Pond", "Secret spot", LocalDate.now().minusDays(5));
+        trip2.setAppUser(appUser);
+        fishingTripRepository.save(trip2);
+
+        FishingTrip trip3 = new FishingTrip("Trolling", "Ocean", "Kattegatt", LocalDate.now().minusDays(20));
+        trip3.setAppUser(appUser);
+        fishingTripRepository.save(trip3);
+
+        Species fish = new Species("Northern pike", 85, 6.7, "Wobbler", "Cloudy day", LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+        fish.setFishingTrip(trip);
+        speciesRepository.save(fish);
+
+        Species fish2 = new Species("Perch", 35, 1.2, "CrankBait", "Cloudy day", LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+        fish2.setFishingTrip(trip);
+        speciesRepository.save(fish2);
+
+        Species fish3 = new Species("Salmon", 65, 4.6, "Wobbler", "Sunny day", LocalDateTime.now().minusDays(20).truncatedTo(ChronoUnit.MINUTES));
+        fish3.setFishingTrip(trip3);
+        speciesRepository.save(fish3);
+
+        Species fish4 = new Species("Salmon", 35, 1.6, "Wobbler", "Sunny day", LocalDateTime.now().minusDays(20).truncatedTo(ChronoUnit.MINUTES));
+        fish4.setFishingTrip(trip3);
+        speciesRepository.save(fish4);
     }
 }
