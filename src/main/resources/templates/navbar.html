@@ -16,24 +16,32 @@
         <li class="nav-item">
             <a class="navbar-brand text-light" th:href="@{/index}"><img class="nav-logo" th:src="@{/img/FishingTripLight.png}" alt="FishingTrip"></a>
         </li>
-        <!--    <li class="nav-item">
-            <a class="nav-link text-light" href="#">Register</a>
-        </li>
-            <li class="nav-item">
-            <a class="nav-link text-light" href="#">Link 2</a>
-        </li>  -->
-        <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
-            <a class="nav-link text-light" th:href="@{/register}">Register user</a>
-        </li>
     </ul>
     <form th:action="@{/logout}" class="form-inline" method="post">
-        <div sec:authorize="isAuthenticated()">
+        <!--    <div sec:authorize="isAuthenticated()">
             <span sec:authentication="name" class="mr-2"></span>
             <button class="btn btn-outline-light" type="submit" value="Logout">Logout</button>
+        </div> -->
+        <div sec:authorize="isAuthenticated()">
+            <div class="dropdown show mr-3">
+                <a class="dropdown-toggle user-name-tag" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span sec:authentication="name" class="mr-2"></span>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" th:href="@{/users/{username} (username=${#authentication.name})}">Profile</a>
+                    <a sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" th:href="@{/register}">Register user</a>
+                    <a sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" th:href="@{/admin/users}">All users</a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item btn-sign-out" type="submit" value="Logout">Sign out</button>
+                    <!--    <a class="dropdown-item" href="#">Sign out</a>  -->
+                </div>
+            </div>
         </div>
+
         <div sec:authorize="isAnonymous()">
-            <a class="btn btn-outline-light" th:href="@{/register}" value="Sign up">Sign Up</a>
-            <a class="btn btn-outline-light" th:href="@{/login}" value="Login">Login</a>
+            <a class="btn btn-sm btn-outline-light" th:href="@{/register}" value="Sign up">Sign Up</a>
+            <a class="btn btn-sm btn-outline-light" th:href="@{/login}" value="Login">Login</a>
         </div>
     </form>
 </nav>

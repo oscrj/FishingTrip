@@ -10,11 +10,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                /*.antMatchers("/users/**").hasAuthority("ADMIN")
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/users/**").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/fishing/**").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/index").permitAll()
-                .antMatchers("/register").permitAll()*/
-                .antMatchers("/**").permitAll()
+                .antMatchers("/register").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")    //  Get method

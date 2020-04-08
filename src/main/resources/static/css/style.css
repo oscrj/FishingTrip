@@ -45,6 +45,21 @@ input {
     height: 56px;
 }
 
+.user-name-tag:hover{
+    text-decoration: none;
+}
+
+.dropdown-toggle::after {
+    display:none;
+    border: none;
+}
+
+.btn-sign-out{
+    background: white;
+    color: black;
+    border-style: none;
+}
+
 .wrapper{
     display: flex;
     justify-content: center;
@@ -102,6 +117,16 @@ input {
 
 .access-message{
     margin: 20px;
+}
+
+.profile-picture{
+    width: 400px;
+    height: 400px;
+}
+
+.user-details{
+    padding: 0;
+    list-style-type: none;
 }
 
 .fishingTripTable{

@@ -13,14 +13,36 @@
 <body>
     <nav th:replace="navbar :: navigation"></nav>
     <div class="container wrapper mt-lg-5">
-        <p>Username:</p><br>
-        <p th:text="${user.userName}" ></p><br>
-        <p>Email:</p><br>
-        <p th:text="${user.email}" ></p><br>
-        <p>Name:</p>
-        <p th:text="${user.firstName +' '+ user.lastName}" ></p><br>
-        <p>Registration date:</p><br>
-        <p th:text="${user.regDate}"></p><br>
+        <div class=" container w-75">
+            <div class="wrapper">
+                <h4 th:text="${user.userName}"></h4>
+            </div>
+            <div class="container wrapper">
+                <div>
+                </div>
+                    <img class="profile-picture" th:src="@{/img/profile.png}" alt="Profile Picture">
+                <div>
+                    <ul class="user-details">
+                        <li>
+                            <h5>Name</h5>
+                            <p th:text="${user.firstName +' '+user.lastName}"></p>
+                        </li>
+                        <li>
+                            <h5>Username</h5>
+                            <p th:text="${user.userName}"></p>
+                        </li>
+                        <li>
+                            <h5>Email</h5>
+                            <p th:text="${user.email}"></p>
+                        </li>
+                        <li>
+                            <h5>Registration date</h5>
+                            <p th:text="${user.regDate}"></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
