@@ -38,7 +38,20 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Override
     public AppUser saveAndUpdate(AppUser appUser) {
+        //  Set role ADMIN if the updatedAppUser is checked admin by an ADMIN.
+        AppUserRole adminRole = roleRepository.findByRole(UserRole.ADMIN).orElseThrow(() -> new IllegalArgumentException("Couldn't find role"));
+        Set<AppUserRole> adminRoleSet = new HashSet<>();
+
+        //  USER, ADMIN role
+        adminRoleSet.add(adminRole);
+
+        if(appUser.isAdmin()){
+            appUser.setAppUserRoles(adminRoleSet);
+            return appUserRepository.save(appUser);
+        }
+
         return appUserRepository.save(appUser);
+
     }
 
     @Override
