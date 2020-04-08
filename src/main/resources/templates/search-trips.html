@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <meta charset="UTF-8">
+    <title>Fishing Trips</title>
+</head>
+<body>
+    <nav th:replace="navbar :: navigation"></nav>
+    <div th:fragment="search-username" class="container wrapper mt-lg-5">
+        <div class=" container w-75">
+            <div class="wrapper">
+                <form class="form-group" th:action="@{/admin/trips}" method="get">
+                    <label class="form-group" for="username">Search by username:</label>
+                    <input class="form-group" type="search" id="username" name="username"  placeholder="Search By username..."/>
+                    <button class="btn btn-outline-light text-light btn-sm" type="submit" >Search</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

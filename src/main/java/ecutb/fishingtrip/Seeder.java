@@ -2,9 +2,9 @@ package ecutb.fishingtrip;
 
 import ecutb.fishingtrip.data.AppUserRepository;
 import ecutb.fishingtrip.data.AppUserRoleRepository;
-import ecutb.fishingtrip.entity.AppUser;
-import ecutb.fishingtrip.entity.AppUserRole;
-import ecutb.fishingtrip.entity.UserRole;
+import ecutb.fishingtrip.data.FishingTripRepository;
+import ecutb.fishingtrip.data.SpeciesRepository;
+import ecutb.fishingtrip.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,12 +25,16 @@ public class Seeder {
     private AppUserRepository appUserRepository;
     private AppUserRoleRepository roleRepository;
     private BCryptPasswordEncoder passwordEncoder;
+    private FishingTripRepository fishingTripRepository;
+    private SpeciesRepository speciesRepository;
 
     @Autowired
-    public Seeder(AppUserRepository appUserRepository, AppUserRoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
+    public Seeder(AppUserRepository appUserRepository, AppUserRoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder, FishingTripRepository fishingTripRepository, SpeciesRepository speciesRepository) {
         this.appUserRepository = appUserRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.fishingTripRepository = fishingTripRepository;
+        this.speciesRepository = speciesRepository;
     }
 
     @PostConstruct
@@ -60,6 +66,5 @@ public class Seeder {
         AppUser appUser3 = new AppUser("test2", "Jane","Doe", "jane.doe@gmail.com", passwordEncoder.encode("password123"), LocalDate.now());
         appUser3.setAppUserRoles(userRole);
         appUserRepository.save(appUser3);
-
     }
 }

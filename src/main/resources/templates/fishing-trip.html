@@ -24,9 +24,6 @@
                     <th scope="col">Water</th>
                     <th scope="col">Location</th>
                     <th scope="col">Date</th>
-                    <!--<th scope="col">Fish caught</th>
-                    <th scope="col">Update</th>
-                    <th scope="col">Delete</th> -->
                 </tr>
                 </thead>
                 <tbody>
@@ -35,8 +32,13 @@
                     <td><span th:text="${fishingTrip.waterType}"></span></td>
                     <td><span th:text="${fishingTrip.location}"></span></td>
                     <td><span th:text="${fishingTrip.formattedDate}"></span></td>
-                    <td class="update-row"><a class="btn update" th:href="@{/fishing/trip/update(fishingTripId=${fishingTrip.fishingTripId})}"><img
+                    <td class="update-row"><a class="update" th:href="@{/fishing/trip/update(fishingTripId=${fishingTrip.fishingTripId})}"><img
                             th:src="@{/img/update.png}" alt="Update"></a>
+                    </td>
+                    <td sec:authorize="hasAuthority('ADMIN')">
+                        <a class="update" th:href="@{/fishing/trips/delete (fishingTripId=${fishingTrip.fishingTripId})}"><img
+                                th:src="@{/img/delete.png}" alt="Delete">
+                        </a>
                     </td>
                 </tr>
                 </tbody>
@@ -66,10 +68,11 @@
                         <td><span th:text="${fish.fishingLure}"></span></td>
                         <td><span th:text="${fish.description}"></span></td>
                         <td><span th:text="${fish.getFormattedDateTime()}"></span></td>
-                        <td class="update-row"><a class="btn update" th:href="@{/fishing/catch/update (speciesId=${fish.speciesId},fishingTripId=${fishingTrip.fishingTripId})}"><img
+                        <td class="update-row"><a class="update" th:href="@{/fishing/catch/update (speciesId=${fish.speciesId},fishingTripId=${fishingTrip.fishingTripId})}"><img
                                 th:src="@{/img/update.png}" alt="Update"></a>
                         </td>
-                        <td><a class="btn btn-outline-danger btn-sm" th:href="@{/fishing/catch/delete (speciesId=${fish.speciesId}, fishingTripId=${fishingTrip.fishingTripId})}">X</a></td>
+                        <td><a class="update" th:href="@{/fishing/catch/delete (speciesId=${fish.speciesId}, fishingTripId=${fishingTrip.fishingTripId})}"><img
+                                th:src="@{/img/delete.png}" alt="Delete"></a></td>
                     </tr>
                 </table>
             </div>

@@ -120,6 +120,17 @@ public class FishingTripController {
 
     /**
      *
+     * @param fishingTripId delete fishing trip by using its ID.
+     * @return a view of all fishingTrips.
+     */
+    @GetMapping("fishing/trips/delete")
+    public String deleteFishingTrip(@RequestParam("fishingTripId") String fishingTripId){
+        fishingTripService.delete(fishingTripId);
+        return "redirect:/admin/findtrips";
+    }
+
+    /**
+     *
      * @param fishingTripId
      * @param model
      * @return

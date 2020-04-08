@@ -29,12 +29,23 @@ public class AppUserController {
         this.appUserService = appUserService;
     }
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @GetMapping("/register")
     public String getRegisterUserFrom(Model model){
         model.addAttribute("form", new CreateAppUser());
         return "register-user";
     }
 
+    /**
+     *
+     * @param form
+     * @param bindingResult
+     * @return
+     */
     @PostMapping("/register")
     public String registerForm(@Valid @ModelAttribute(name = "form") CreateAppUser form, BindingResult bindingResult){
         // Check with database if there already is a user with this username.
@@ -55,6 +66,13 @@ public class AppUserController {
         return "redirect:/login";
     }
 
+    /**
+     *
+     * @param username
+     * @param appUser
+     * @param model
+     * @return
+     */
     @GetMapping("/users/{username}")
     public String getUserView(@PathVariable(name = "username") String username, @AuthenticationPrincipal UserDetails appUser, Model model){
         if(appUser == null){
@@ -76,6 +94,12 @@ public class AppUserController {
         }
     }
 
+    /**
+     *
+     * @param username
+     * @param model
+     * @return
+     */
     @GetMapping("/users/{username}/update")
     public String getUserUpdateForm(@PathVariable("username") String username, Model model){
         UpdateAppUser updatedAppUser = new UpdateAppUser();
@@ -92,6 +116,13 @@ public class AppUserController {
         return "update-user";
     }
 
+    /**
+     *
+     * @param userName
+     * @param updatedAppUser
+     * @param bindingResult
+     * @return
+     */
     @PostMapping("/users/{username}/update")
     public String userUpdatedForm(@PathVariable("username") String userName,
                                   @Valid @ModelAttribute("updatedAppUserForm") UpdateAppUser updatedAppUser, BindingResult bindingResult){
@@ -120,6 +151,18 @@ public class AppUserController {
         appUserService.saveAndUpdate(originalAppUser);
 
         return "redirect:/users/"+originalAppUser.getUserName();
+    }
+
+    /**
+     * Delete User
+     * @param userName find the user you want to delete by its username
+     * @return will redirect you to users-view and show you the all the registered users.
+     */
+    @GetMapping("/users/{username}/delete")
+    public String deleteAppUser(@PathVariable("username") String userName){
+        AppUser deletedAppUser = appUserService.findByUserName(userName).orElseThrow(IllegalArgumentException::new);
+        appUserService.delete(deletedAppUser.getUserId());
+        return "redirect:/admin/users";
     }
 
 }

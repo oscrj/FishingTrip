@@ -20,7 +20,7 @@ public class FishingTrip {
     private String waterType;
     private String location;
     private LocalDate date;
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne()
     @JoinColumn(name = "username", referencedColumnName = "username")
     private AppUser appUser;
 

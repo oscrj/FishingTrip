@@ -43,10 +43,10 @@
                 </div>
             </div>
             <div sec:authorize="hasAuthority('ADMIN')" class="wrapper w-100 update-user">
-                <a class="btn update mr-2" th:href="@{/users/{username}/update (username=${user.userName})}"><img
+                <a class="update mr-2" th:href="@{/users/{username}/update (username=${user.userName})}"><img
                         th:src="@{/img/update.png}" alt="Update">
                 </a>
-                <a class="btn update" th:href="@{/users/{username}/delete (username=${user.userName})}"><img
+                <a class="update" th:href="@{/users/{username}/delete (username=${user.userName})}"><img
                         th:src="@{/img/delete.png}" alt="Delete">
                 </a>
             </div>

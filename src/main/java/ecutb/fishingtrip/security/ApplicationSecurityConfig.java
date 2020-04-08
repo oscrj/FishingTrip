@@ -13,6 +13,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/users/{username}").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/users/{username}/**").hasAuthority("ADMIN")
+                .antMatchers("fishing/trips/delete").hasAuthority("ADMIN")
                 .antMatchers("/fishing/**").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/index").permitAll()
                 .antMatchers("/register").permitAll()
