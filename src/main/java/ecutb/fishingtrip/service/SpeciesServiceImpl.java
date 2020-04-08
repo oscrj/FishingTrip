@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static ecutb.fishingtrip.exception.ExceptionsSupply.USER_NOT_FOUND;
 
@@ -34,12 +35,12 @@ public class SpeciesServiceImpl implements SpeciesService {
     }
 
     @Override
-    public List<Species> findAll() {
+    public Set<Species> findAll() {
         return speciesRepository.findAll();
     }
 
     @Override
-    public List<Species> findByFishingTrip(String fishingTripId) {
+    public Set<Species> findByFishingTrip(String fishingTripId) {
         return speciesRepository.findByFishingTrip(fishingTripId);
     }
 

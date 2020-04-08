@@ -20,7 +20,7 @@
     </div>
     <div th:unless="${fishingTrips.isEmpty()}" class=" container w-75">
         <div class="wrapper">
-            <h4>All Fishing Trips</h4>
+            <h4>All Fishing Trips made by <span th:text="${user}"></span></h4>
         </div>
         <table class="table table-borderless mt-lg-5">
             <thead>

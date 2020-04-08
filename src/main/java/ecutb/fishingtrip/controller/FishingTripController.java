@@ -17,7 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
+import java.util.Set;
 
 @Controller
 public class FishingTripController {
@@ -60,7 +60,7 @@ public class FishingTripController {
         model.addAttribute("fishingTrip", fishingTrip);
 
         // Find all caught fish from fishingTrip with this Id.
-        List<Species> fishCaught = speciesService.findByFishingTrip(fishingTripId);
+        Set<Species> fishCaught = speciesService.findByFishingTrip(fishingTripId);
         model.addAttribute("fishCaught", fishCaught);
 
         return "fishing-trip";
@@ -94,8 +94,8 @@ public class FishingTripController {
     @PostMapping("/fishing/trip/update")
     public String updateFishingTripForm(@RequestParam("id") String id,
                                         @Valid @ModelAttribute("updatedFishingTripForm") UpdateFishingTrip updatedFishingTrip, BindingResult bindingResult){
-        FishingTrip originalFishingTrip = fishingTripService.findByFishingTripId(id).orElseThrow(IllegalArgumentException::new);
 
+        FishingTrip originalFishingTrip = fishingTripService.findByFishingTripId(id).orElseThrow(IllegalArgumentException::new);
         originalFishingTrip.setFishingMethod(updatedFishingTrip.getFishingMethod());
         originalFishingTrip.setWaterType(updatedFishingTrip.getWaterType());
         originalFishingTrip.setLocation(updatedFishingTrip.getLocation());
@@ -107,7 +107,7 @@ public class FishingTripController {
 
     @GetMapping("/fishing/trips")
     public String findAll(@AuthenticationPrincipal UserDetails appUser, Model model){
-        List<FishingTrip> fishingTrips = fishingTripService.findByAppUser(appUser.getUsername());
+        Set<FishingTrip> fishingTrips = fishingTripService.findByAppUser(appUser.getUsername());
         model.addAttribute("fishingTrips", fishingTrips);
         return "fishing-trips";
     }

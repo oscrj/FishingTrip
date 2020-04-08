@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class FishingTripServiceImpl implements FishingTripService {
@@ -30,7 +31,7 @@ public class FishingTripServiceImpl implements FishingTripService {
     }
 
     @Override
-    public List<FishingTrip> findAll() {
+    public Set<FishingTrip> findAll() {
         return fishingTripRepository.findAll();
     }
 
@@ -56,7 +57,7 @@ public class FishingTripServiceImpl implements FishingTripService {
     }
 
     @Override
-    public List<FishingTrip> findByAppUser(String userName) {
+    public Set<FishingTrip> findByAppUser(String userName) {
         return fishingTripRepository.findByAppUser(userName);
     }
 

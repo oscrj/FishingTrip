@@ -5,14 +5,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface FishingTripRepository extends CrudRepository<FishingTrip, String> {
 
     Optional<FishingTrip> findByFishingTripId(String id);
 
-    List<FishingTrip> findAll();
+    Set<FishingTrip> findAll();
 
     /**
      *
@@ -20,9 +20,9 @@ public interface FishingTripRepository extends CrudRepository<FishingTrip, Strin
      * @return all fishingtrips created by user with specific username
      */
     @Query("SELECT f FROM FishingTrip f WHERE f.appUser.userName = :username")
-    List<FishingTrip> findByAppUser(@Param("username")String userName);
+    Set<FishingTrip> findByAppUser(@Param("username")String userName);
 
-    List<FishingTrip> findByWaterType(String WaterType);
+    Set<FishingTrip> findByWaterType(String WaterType);
 
-    List<FishingTrip> findByFishingMethod(String method);
+    Set<FishingTrip> findByFishingMethod(String method);
 }

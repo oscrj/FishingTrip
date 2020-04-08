@@ -5,10 +5,11 @@ import ecutb.fishingtrip.entity.FishingTrip;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface FishingTripService{
 
-    List<FishingTrip> findAll();
+    Set<FishingTrip> findAll();
 
     Optional<FishingTrip> findByFishingTripId(String id);
 
@@ -16,7 +17,7 @@ public interface FishingTripService{
 
     FishingTrip saveAndUpdate(FishingTrip fishingTrip);
 
-    List<FishingTrip> findByAppUser(String userName);
+    Set<FishingTrip> findByAppUser(String userName);
 
     boolean delete(String fishingTripId);
 
