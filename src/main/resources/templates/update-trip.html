@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <meta charset="UTF-8">
+    <title>New Fishing Trip</title>
+</head>
+<body>
+<nav th:replace="navbar :: navigation"></nav>
+<div class="container wrapper">
+    <div class="card w-50 mt-4 mb-3 border-light login-form">
+        <div class="card-body">
+            <h5 class="card-title mb-3">New Fishing Trip</h5>
+            <form th:action="@{/fishing/trip/update(id=${updatedFishingTripForm.fishingTripId})}" th:object="${updatedFishingTripForm}" method="POST">
+                <div class="form-group  mb-2">
+                    <input type="hidden" th:value="${updatedFishingTripForm.fishingTripId}" th:field="*{fishingTripId}">
+                </div>
+                <div class="form-group  mb-2">
+                    <label for="fishingMethod">Select Fishing Method</label>
+                    <select class="form-control" id="fishingMethod" th:field="*{fishingMethod}">
+                        <option value="Spinning">Spinning</option>
+                        <option value="Fly Fishing">Fly Fishing</option>
+                        <option value="Coarse Fishing">Coarse Fishing</option>
+                        <option value="Trolling">Trolling</option>
+                        <option value="Vertical Fishing">Vertical Fishing</option>
+                        <option value="Ice Fishing">Ice Fishing</option>
+                    </select>
+                </div>
+                <div th:if="${#fields.hasErrors('fishingMethod')}">
+                    <ul class="p-0" >
+                        <li class="li-error" th:each="err : ${#fields.errors('fishingMethod')}">
+                            <span class="form-error" th:text="${err}"></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="form-group  mb-2">
+                    <label for="waterType">Select Fishing Method</label>
+                    <select class="form-control" id="waterType" th:field="*{waterType}">
+                        <option value="Lake">Lake</option>
+                        <option value="River">River</option>
+                        <option value="Archipelago">Archipelago</option>
+                        <option value="Ocean">Ocean</option>
+                        <option value="Pond">Pond</option>
+                        <option value="Stream">Stream</option>
+                    </select>
+                </div>
+                <div th:if="${#fields.hasErrors('waterType')}">
+                    <ul class="p-0" >
+                        <li class="li-error" th:each="err : ${#fields.errors('waterType')}">
+                            <span class="form-error" th:text="${err}"></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label for="location">Location</label>
+                    <input class="form-control" type="text" id="location" placeholder="Your location.." th:field="*{location}" />
+                </div>
+
+                <div class="form-group mb-2">
+                    <button type="submit" class="mt-2 btn btn-outline-light text-light">Update Trip</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

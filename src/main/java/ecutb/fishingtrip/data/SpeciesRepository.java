@@ -10,8 +10,6 @@ import java.util.Optional;
 
 public interface SpeciesRepository extends CrudRepository<Species, String> {
 
-    Optional<Species> findBySpeciesId(String id);
-
     List<Species> findAll();
 
     /**

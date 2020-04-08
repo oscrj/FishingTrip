@@ -30,7 +30,7 @@ public class SpeciesServiceImpl implements SpeciesService {
 
     @Override
     public Optional<Species> findBySpeciesId(String SpeciesId) {
-        return speciesRepository.findBySpeciesId(SpeciesId);
+        return speciesRepository.findById(SpeciesId);
     }
 
     @Override

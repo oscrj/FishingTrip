@@ -1,13 +1,12 @@
 package ecutb.fishingtrip.dto;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
 
 import static ecutb.fishingtrip.constants.message.ValidationMessages.SPECIFY_SPECIES;
 
 public class UpdateSpecies {
 
-    @Positive
+    @NotBlank
     private String speciesId;
     @NotBlank(message = SPECIFY_SPECIES)
     private String species;
@@ -18,6 +17,10 @@ public class UpdateSpecies {
 
     public String getSpeciesId() {
         return speciesId;
+    }
+
+    public void setSpeciesId(String speciesId) {
+        this.speciesId = speciesId;
     }
 
     public String getSpecies() {
@@ -45,6 +48,9 @@ public class UpdateSpecies {
     }
 
     public String getFishingLure() {
+        if(this.fishingLure.isEmpty()){
+            return fishingLure = "Lure not specified";
+        }
         return fishingLure;
     }
 
@@ -53,6 +59,9 @@ public class UpdateSpecies {
     }
 
     public String getDescription() {
+        if(this.description.isEmpty()){
+            return description = "No description";
+        }
         return description;
     }
 

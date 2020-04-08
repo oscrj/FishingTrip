@@ -36,12 +36,13 @@
                     <td><span th:text="${fishingTrip.location}"></span></td>
                     <td><span th:text="${fishingTrip.formattedDate}"></span></td>
                     <td class="update-row"><a class="btn update" th:href="@{/fishing/trip/update(fishingTripId=${fishingTrip.fishingTripId})}"><img
-                            th:src="@{/img/update.png}" alt="Update"></a></td>
+                            th:src="@{/img/update.png}" alt="Update"></a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
             <div class="container btn-add-catch w-100">
-                <a class="btn btn-sm btn-outline-light text-light" th:href="@{/fishing/catch(fishingTripId=${fishingTrip.fishingTripId})}">Add Catch</a>
+                <a class="btn btn-sm btn-outline-light text-light" th:href="@{/fishing/catch (fishingTripId=${fishingTrip.fishingTripId})}">Add Catch</a>
             </div>
         </div>
     </div>
@@ -65,9 +66,9 @@
                         <td><span th:text="${fish.fishingLure}"></span></td>
                         <td><span th:text="${fish.description}"></span></td>
                         <td><span th:text="${fish.getFormattedDateTime()}"></span></td>
-                        <td class="update-row"><a class="btn update" th:href="@{/fishing/catch/update(speciesId=${fish.speciesId},fishingTripId=${fishingTrip.fishingTripId})}"><img
+                        <td class="update-row"><a class="btn update" th:href="@{/fishing/catch/update (speciesId=${fish.speciesId},fishingTripId=${fishingTrip.fishingTripId})}"><img
                                 th:src="@{/img/update.png}" alt="Update"></a></td>
-                        <td><a class="btn btn-outline-danger btn-sm" th:href="@{/fishing/catch/delete(speciesId=${fish.speciesId}, fishingTripId=${fishingTrip.fishingTripId})}">X</a></td>
+                        <td><a class="btn btn-outline-danger btn-sm" th:href="@{/fishing/catch/delete (speciesId=${fish.speciesId}, fishingTripId=${fishingTrip.fishingTripId})}">X</a></td>
                     </tr>
                 </table>
             </div>
