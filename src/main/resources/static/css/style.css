@@ -129,6 +129,28 @@ input {
     list-style-type: none;
 }
 
+.update-user{
+    display: flex;
+    justify-content: right;
+    align-items: start;
+}
+
+.delete-user{
+    display: flex;
+    justify-content: right;
+    align-items: start;
+}
+
+.update{
+    margin: 0;
+    padding: 0px;
+}
+
+.update img{
+    width: 18px;
+    height: 18px;
+}
+
 .fishingTripTable{
     border-bottom: 1px solid lightgrey;
 }
@@ -141,15 +163,6 @@ input {
 .update-row{
     margin: 0px;
     padding-top: 7px;
-}
-
-.update{
-    margin: 0;
-    padding: 0;
-}
-.update img{
-    width: 18px;
-    height: 18px;
 }
 
 .btn-add-catch{

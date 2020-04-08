@@ -42,6 +42,8 @@ public interface AppUserService {
      */
     Optional<AppUser> findByUserName(String userName);
 
+    Optional<AppUser> findByEmail(String email);
+
     /**
      *
      * @param appUserId

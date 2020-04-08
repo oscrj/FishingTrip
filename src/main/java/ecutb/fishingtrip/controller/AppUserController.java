@@ -1,6 +1,7 @@
 package ecutb.fishingtrip.controller;
 
 import ecutb.fishingtrip.dto.CreateAppUser;
+import ecutb.fishingtrip.dto.UpdateAppUser;
 import ecutb.fishingtrip.entity.AppUser;
 import ecutb.fishingtrip.service.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,52 @@ public class AppUserController {
         }else{
             return "redirect:/accessdenied";
         }
+    }
+
+    @GetMapping("/users/{username}/update")
+    public String getUserUpdateForm(@PathVariable("username") String username, Model model){
+        UpdateAppUser updatedAppUser = new UpdateAppUser();
+        AppUser appUser = appUserService.findByUserName(username).orElseThrow(IllegalArgumentException::new);
+
+        updatedAppUser.setUserId(appUser.getUserId());
+        updatedAppUser.setUserName(appUser.getUserName());
+        updatedAppUser.setFirstName(appUser.getFirstName());
+        updatedAppUser.setLastName(appUser.getLastName());
+        updatedAppUser.setEmail(appUser.getEmail());
+        updatedAppUser.setAdmin(appUser.isAdmin());
+
+        model.addAttribute("updatedAppUserForm", appUser);
+        return "update-user";
+    }
+
+    @PostMapping("/users/{username}/update")
+    public String userUpdatedForm(@PathVariable("username") String userName,
+                                  @Valid @ModelAttribute("updatedAppUserForm") UpdateAppUser updatedAppUser, BindingResult bindingResult){
+        AppUser originalAppUser = appUserService.findByUserName(userName).orElseThrow(IllegalArgumentException::new);
+
+        if(appUserService.findByUserName(updatedAppUser.getUserName()).isPresent() && !updatedAppUser.getUserName().equalsIgnoreCase(originalAppUser.getUserName())){
+            FieldError error = new FieldError("updatedAppUserForm", "username", "Username is already in use");
+            bindingResult.addError(error);
+        }
+
+        if(appUserService.findByEmail(updatedAppUser.getEmail()).isPresent() && !updatedAppUser.getEmail().equalsIgnoreCase(originalAppUser.getEmail())){
+            FieldError error = new FieldError("updatedAppUserForm", "email", "Email is already in use");
+            bindingResult.addError(error);
+        }
+
+        if(bindingResult.hasErrors()){
+            return "update-user";
+        }
+
+        originalAppUser.setUserName(updatedAppUser.getUserName());
+        originalAppUser.setFirstName(updatedAppUser.getFirstName());
+        originalAppUser.setLastName(updatedAppUser.getLastName());
+        originalAppUser.setEmail(updatedAppUser.getEmail());
+        originalAppUser.setAdmin(updatedAppUser.isAdmin());
+
+        appUserService.saveAndUpdate(originalAppUser);
+
+        return "redirect:/users/"+originalAppUser.getUserName();
     }
 
 }

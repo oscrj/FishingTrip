@@ -23,6 +23,7 @@ public class AppUser implements Serializable {
     private String email;
     private String password;
     private LocalDate regDate;
+    private boolean admin;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE},
             fetch = FetchType.LAZY)
@@ -100,6 +101,14 @@ public class AppUser implements Serializable {
 
     public void setAppUserRoles(Set<AppUserRole> appUserRoles) {
         this.appUserRoles = appUserRoles;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
     @Override

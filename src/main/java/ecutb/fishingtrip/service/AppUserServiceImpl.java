@@ -83,6 +83,11 @@ public class AppUserServiceImpl implements AppUserService {
     }
 
     @Override
+    public Optional<AppUser> findByEmail(String email) {
+        return appUserRepository.findByEmailIgnoreCase(email);
+    }
+
+    @Override
     public boolean delete(String appUserId) {
         appUserRepository.deleteById(appUserId);
         return appUserRepository.existsById(appUserId);
