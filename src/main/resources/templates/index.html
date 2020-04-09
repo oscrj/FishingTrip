@@ -14,32 +14,46 @@
     <nav th:replace="navbar :: navigation"></nav>
     <div sec:authorize="isAnonymous()">
         <div class="wrapper container mt-lg-5">
-            <div class="w-25 index-container">
+            <div class="w-50 index-container">
                 <div class="index-header">
-                    <H1 class="font-weight-light">Fishing Trip</H1>
+                    <img class="index-logo" th:src="@{/img/FishingTripLight.png}" alt="Fishing Trip">
                 </div>
                 <div class="index-content">
-                    <p>Information</p>
+                    <div class="index-nav w-75">
+                        <h4>Welcome</h4>
+                        <p>This is an simple to use application to register every fishing day and every fish you catch. FishingTrip will make
+                            it easy for you to look back at all you fishing trips. What water was productive, when did the big one strike?
+                            and which weather was the best for your fishing.
+                        </p>
+                        <p>To use FishingTrip <a class="" th:href="@{/register}" value="Sign up">Sign Up</a> to get your account and start fishing.
+                    </div>
                 </div>
             </div>
-        </div>
+         </div>
     </div>
-
     <div sec:authorize="isAuthenticated()">
         <div class="wrapper container mt-lg-5">
-            <div class="w-25 index-container">
+            <div class="w-50 index-container">
                 <div class="index-header">
-                    <H1 class="font-weight-light">Fishing Trip</H1>
+                    <H1 class="font-weight-light">Welcome <span th:text="${#authentication.name}"></span></H1>
                 </div>
                 <div class="index-content">
-                    <div class="index-nav w-100">
+                    <div class="index-nav w-50">
                         <a class="index-btn btn btn-outline-light" th:href="@{/fishing/gofishing}">Go Fishing</a><br>
                         <a class="index-btn btn btn-outline-light" th:href="@{/fishing/trips}">Fishing Trips</a>
+                    </div>
+                </div>
+                <div class="index-content">
+                    <div class="index-nav w-75">
+                        <p>
+                            What are you waiting for? Lets go Fishing.<br>Register your Trips and caught fishes and keep track of
+                            every day you spend on the water. Go back and look at all your catches and try to find a pattern in all you registered
+                            trips. When is the best time of the day to catch the biggest fish?.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 </html>

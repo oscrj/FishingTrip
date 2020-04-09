@@ -24,9 +24,6 @@
                     <th scope="col">Water</th>
                     <th scope="col">Location</th>
                     <th scope="col">Date</th>
-                    <!--<th scope="col">Fish caught</th>
-                    <th scope="col">Update</th>
-                    <th scope="col">Delete</th> -->
                 </tr>
                 </thead>
                 <tbody>
@@ -35,13 +32,8 @@
                     <td><span th:text="${fishingTrip.waterType}"></span></td>
                     <td><span th:text="${fishingTrip.location}"></span></td>
                     <td><span th:text="${fishingTrip.formattedDate}"></span></td>
-                    <td><a class="btn btn-sm btn-outline-light text-light" th:href="@{/fishing/trips/details(fishingTripId=${fishingTrip.fishingTripId})}">Details</a></td>
-                    <!--    <td>
-                        <form th:action="@{delete}" method="post">
-                            <input type="hidden" name="id" id="id" th:value="${fishingTrip.fishingTripId}"/>
-                            <input class="btn btn-sm btn-danger" type="submit" value="Delete">
-                        </form>
-                    </td>   -->
+                    <td><a class="btn btn-sm btn-outline-light text-light" th:href="@{/fishing/trips/details(fishingTripId=${fishingTrip.fishingTripId})}">Details</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

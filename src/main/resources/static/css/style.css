@@ -6,16 +6,14 @@ body{
     background: #3a4750;
 }
 
-/* chromium
+/* chromium */
 input ::-webkit-inner-spin-button,
 input ::-webkit-outer-spin-button {
     -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     margin: 0;
 }
 
-*/
 select {
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -25,12 +23,11 @@ option{
     color: black;
 }
 
-/*
- FireFox
-input {
+ /* FireFox */
+.number-input {
     -moz-appearance: textfield;
 }
-*/
+
 
 #isAdmin{
     color: black;
@@ -66,17 +63,23 @@ input {
     align-items: center;
 }
 
+.index-logo{
+    width: 250px;
+    height: 250px;
+}
 .index-container{
-    background: rgba(211,211,211,0.2);
-
+    background: rgba(211,211,211,0.05);
 }
 
 .index-header{
-    border-bottom: 1px solid lightgrey;
-    margin: 20px;
+    margin: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.index-header h1{
+    margin: 10px;
 }
 
 .index-content{

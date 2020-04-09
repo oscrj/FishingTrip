@@ -58,7 +58,7 @@
     <div th:unless="${fishCaught.isEmpty()}">
         <div class="container wrapper mt-lg-5">
             <div class=" container w-75">
-                <h4>Today's catch</h4>
+                <h4>Registered fish</h4>
                 <table class="table table-borderless">
                     <tr th:each="fish : ${fishCaught}">
                         <td><img class="fish-picture" th:src="@{/img/FishLogo.png}" alt="Fish"></td>
@@ -72,7 +72,8 @@
                                 th:src="@{/img/update.png}" alt="Update"></a>
                         </td>
                         <td><a class="update" th:href="@{/fishing/catch/delete (speciesId=${fish.speciesId}, fishingTripId=${fishingTrip.fishingTripId})}"><img
-                                th:src="@{/img/delete.png}" alt="Delete"></a></td>
+                                th:src="@{/img/delete.png}" alt="Delete"></a>
+                        </td>
                     </tr>
                 </table>
             </div>
