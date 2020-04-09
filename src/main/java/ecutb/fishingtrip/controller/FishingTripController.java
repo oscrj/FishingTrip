@@ -31,12 +31,24 @@ public class FishingTripController {
         this.speciesService = speciesService;
     }
 
+    /**
+     * Form that will create a new FishingTrip.
+     * @param model user to show and receive data from that from.
+     * @return view whit fishingTrip From.
+     */
     @GetMapping("/fishing/gofishing")
     public String getFishingTripFrom(Model model){
         model.addAttribute("fishingTripForm", new CreateFishingTrip());
         return "new-trip";
     }
 
+    /**
+     * Will create a new FishingTrip by correct filled out form.
+     * @param fishingTripForm used to fill out and receive information to create a new Fishing Trip.
+     * @param appUser used to bind the newly created FishingTrip to the user that is logged in.
+     * @param bindingResult catch errors regarding wrong inputs from user.
+     * @return will return a view of information of the created fishingTrip from.
+     */
     @PostMapping("/fishing/gofishing")
     public String createFishingTripFrom(@Valid @ModelAttribute(name = "fishingTripForm") CreateFishingTrip fishingTripForm, @AuthenticationPrincipal UserDetails appUser, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
@@ -53,6 +65,12 @@ public class FishingTripController {
         return "redirect:/fishing/"+newFishingTrip.getFishingTripId();
     }
 
+    /**
+     * Show information about the fishingTrip and also makes it possible to add caught fish during the fishing trip.
+     * @param fishingTripId find the specific fishing Trip by its id. Will also be used to receive all caught fish during that specific trip.
+     * @param model display the fishingTrips details also display all the caught fishes.
+     * @return a view of information regarding the specific fishingTrip.
+     */
     @GetMapping("/fishing/{fishingTripId}")
     public String getFishingTrip(@PathVariable(name = "fishingTripId") String fishingTripId, Model model){
         // Find fishingTrip using fishingTripId.
@@ -67,7 +85,7 @@ public class FishingTripController {
     }
 
     /**
-     *
+     * Update fishingTrip. (Only by ADMINS).
      * @param fishingTripId used to receive the fishingTrip that will be updated.
      * @param model - used to receive the new updated information in view update-Trip
      * @return will return the view update-trip containing the update form for the user to fill in.
@@ -87,9 +105,10 @@ public class FishingTripController {
     }
 
     /**
-     *
-     * @param id
-     * @return
+     * Update already created fishingTrips
+     * @param id find fishingtrip using id.
+     * @param updatedFishingTrip store the old information about the fishingTrip that will be updated. If user dont change input it will remain the same.
+     * @return view of fishingTrip that was updated.
      */
     @PostMapping("/fishing/trip/update")
     public String updateFishingTripForm(@RequestParam("id") String id,
@@ -105,6 +124,12 @@ public class FishingTripController {
         return "redirect:/fishing/"+id;
     }
 
+    /**
+     * Find all fishingtrips made by spicific user
+     * @param appUser find all fishingTrips made by logged in user and use users username to find them.
+     * @param model view of all the trips user have done.
+     * @return view of all the trips user have done.
+     */
     @GetMapping("/fishing/trips")
     public String findAll(@AuthenticationPrincipal UserDetails appUser, Model model){
         Set<FishingTrip> fishingTrips = fishingTripService.findByAppUser(appUser.getUsername());
@@ -112,13 +137,18 @@ public class FishingTripController {
         return "fishing-trips";
     }
 
+    /**
+     * Redirect to more detailed page with information about FishingTrip
+     * @param fishingTripId used to redirect to correct FishingTrip page.
+     * @return detaild view if that FishingTrip
+     */
     @GetMapping("fishing/trips/details")
     public String details(@RequestParam("fishingTripId") String fishingTripId){
         return "redirect:/fishing/"+fishingTripId;
     }
 
     /**
-     *
+     * Delete FishingTrip.
      * @param fishingTripId delete fishing trip by using its ID.
      * @return a view of all fishingTrips.
      */
@@ -129,10 +159,10 @@ public class FishingTripController {
     }
 
     /**
-     *
-     * @param fishingTripId
-     * @param model
-     * @return
+     * Form to create new catch.
+     * @param fishingTripId used to bind the a specific FishingTrip to the caught fish. (will be used in createNewCatch()).
+     * @param model Show and receive information from the Form
+     * @return a view of catchForm that user will fill in.
      */
     @GetMapping("/fishing/catch")
     public String getCatchForm(@RequestParam("fishingTripId") String fishingTripId, Model model){
@@ -142,6 +172,13 @@ public class FishingTripController {
         return "new-catch";
     }
 
+    /**
+     * Form to create new catch.
+     * @param fishingTripId used to bind catch to specific FishingTrip
+     * @param specie used to create new Species with information from catchForm.
+     * @param bindingResult saves errors from incorrect inputs from user
+     * @return will display view of the fishingTrip the Species were caught on and also display the catch.
+     */
     @PostMapping("/fishing/catch")
     public String createNewCatch(@RequestParam("fishingTripId") String fishingTripId, @Valid @ModelAttribute(name = "catchForm") CreateSpecies specie, BindingResult bindingResult){
 
@@ -207,7 +244,12 @@ public class FishingTripController {
         return "redirect:/fishing/"+fishingTripId;
     }
 
-
+    /**
+     * Delete Catch.
+     * @param speciesId used to find the Species(Catch) you want to delete.
+     * @param fishingTripId used to redirect back to the Trips the Species you deleted were caught on.
+     * @return the view of Fishing Trip with id fishingTripId.
+     */
     @GetMapping("/fishing/catch/delete")
     public String deleteCatch(@RequestParam("speciesId") String speciesId, @RequestParam("fishingTripId") String fishingTripId){
         speciesService.delete(speciesId);

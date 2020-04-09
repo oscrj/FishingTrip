@@ -39,11 +39,21 @@ public class AdminController {
         return "users-view";
     }
 
+    /**
+     * Give Admin a view of a seach form to seach after fishing trips by username.
+     * @return view of a search form.
+     */
     @GetMapping("admin/findtrips")
     public String findTripsByUserName(){
         return "search-trips";
     }
 
+    /**
+     * Receive and show all Fishing trips made by specific user.
+     * @param userName used to receive all fishing trips made by specific user.
+     * @param model used to display all trips.
+     * @return a view of all trips made by user with specific username.
+     */
     @GetMapping("admin/trips")
     public String tripsByUsername(@RequestParam("username") String userName, Model model){
         Set<FishingTrip> fishingTrips = fishingTripService.findByAppUser(userName);

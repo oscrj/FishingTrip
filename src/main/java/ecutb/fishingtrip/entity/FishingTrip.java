@@ -77,6 +77,10 @@ public class FishingTrip {
         this.appUser = appUser;
     }
 
+    /**
+     * Format date
+     * @return will return a formatted date and show day(00) month(april) Year(2020)
+     */
     public String getFormattedDate(){
         return date.format(DateTimeFormatter.ofPattern("dd MMMM yyyy"));
     }

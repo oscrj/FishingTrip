@@ -96,6 +96,10 @@ public class Species {
         this.fishingTrip = fishingTrip;
     }
 
+    /**
+     * Format LocalDateTime
+     * @return will only return the hour and minute the Species where created.
+     */
     public String getFormattedDateTime(){
         return timeStamp.format(DateTimeFormatter.ofPattern("HH:mm"));
     }

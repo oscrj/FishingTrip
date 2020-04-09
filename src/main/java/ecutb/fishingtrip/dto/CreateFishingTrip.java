@@ -37,6 +37,10 @@ public class CreateFishingTrip {
         this.location = location;
     }
 
+    /**
+     * If the input is blank location is set to Secrete location
+     * @return location
+     */
     public String getCheckLocationIsEmpty(){
          if(this.location.isEmpty()){
            return location = "Secrete location";

@@ -12,72 +12,77 @@
 </head>
 <body>
     <nav th:replace="navbar :: navigation"></nav>
-    <div class="container wrapper mt-lg-5">
-        <div class=" container w-75">
-            <div class="wrapper">
-                <h4 th:text="${fishingTrip.location}"></h4>
-            </div>
-            <table class="table table-borderless mt-lg-5">
-                <thead>
-                <tr class="fishingTripTable">
-                    <th scope="col">Fishing techniques</th>
-                    <th scope="col">Water</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">Date</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><span th:text="${fishingTrip.fishingMethod}"></span></td>
-                    <td><span th:text="${fishingTrip.waterType}"></span></td>
-                    <td><span th:text="${fishingTrip.location}"></span></td>
-                    <td><span th:text="${fishingTrip.formattedDate}"></span></td>
-                    <td class="update-row"><a class="update" th:href="@{/fishing/trip/update(fishingTripId=${fishingTrip.fishingTripId})}"><img
-                            th:src="@{/img/update.png}" alt="Update"></a>
-                    </td>
-                    <td sec:authorize="hasAuthority('ADMIN')">
-                        <a class="update" th:href="@{/fishing/trips/delete (fishingTripId=${fishingTrip.fishingTripId})}"><img
-                                th:src="@{/img/delete.png}" alt="Delete">
-                        </a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <div class="container btn-add-catch w-100">
-                <a class="btn btn-sm btn-outline-light text-light" th:href="@{/fishing/catch(fishingTripId=${fishingTrip.fishingTripId})}">Add Catch</a>
-            </div>
-        </div>
-    </div>
-    <div th:if="${fishCaught.isEmpty()}">
-        <div class="container wrapper mt-lg-5">
-            <div class="container w-75">
-                <h4>No fish caught</h4>
-            </div>
-        </div>
-    </div>
-    <div th:unless="${fishCaught.isEmpty()}">
+    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')} or ${#authentication.name.equals(fishingTrip.appUser.userName)}">
         <div class="container wrapper mt-lg-5">
             <div class=" container w-75">
-                <h4>Registered fish</h4>
-                <table class="table table-borderless">
-                    <tr th:each="fish : ${fishCaught}">
-                        <td><img class="fish-picture" th:src="@{/img/FishLogo.png}" alt="Fish"></td>
-                        <td><span th:text="${fish.species}"></span></td>
-                        <td><span th:text="${fish.length}"></span><span> CM</span></td>
-                        <td><span th:text="${fish.weight}"></span><span> KG</span></td>
-                        <td><span th:text="${fish.fishingLure}"></span></td>
-                        <td><span th:text="${fish.description}"></span></td>
-                        <td><span th:text="${fish.getFormattedDateTime()}"></span></td>
-                        <td class="update-row"><a class="update" th:href="@{/fishing/catch/update (speciesId=${fish.speciesId},fishingTripId=${fishingTrip.fishingTripId})}"><img
+                <div class="wrapper">
+                    <h4 th:text="${fishingTrip.location}"></h4>
+                </div>
+                <table class="table table-borderless mt-lg-5">
+                    <thead>
+                    <tr class="fishingTripTable">
+                        <th scope="col">Fishing techniques</th>
+                        <th scope="col">Water</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span th:text="${fishingTrip.fishingMethod}"></span></td>
+                        <td><span th:text="${fishingTrip.waterType}"></span></td>
+                        <td><span th:text="${fishingTrip.location}"></span></td>
+                        <td><span th:text="${fishingTrip.formattedDate}"></span></td>
+                        <td class="update-row"><a class="update" th:href="@{/fishing/trip/update(fishingTripId=${fishingTrip.fishingTripId})}"><img
                                 th:src="@{/img/update.png}" alt="Update"></a>
                         </td>
-                        <td><a class="update" th:href="@{/fishing/catch/delete (speciesId=${fish.speciesId}, fishingTripId=${fishingTrip.fishingTripId})}"><img
-                                th:src="@{/img/delete.png}" alt="Delete"></a>
+                        <td sec:authorize="hasAuthority('ADMIN')">
+                            <a class="update" th:href="@{/fishing/trips/delete (fishingTripId=${fishingTrip.fishingTripId})}"><img
+                                    th:src="@{/img/delete.png}" alt="Delete">
+                            </a>
                         </td>
                     </tr>
+                    </tbody>
                 </table>
+                <div class="container btn-add-catch w-100">
+                    <a class="btn btn-sm btn-outline-light text-light" th:href="@{/fishing/catch(fishingTripId=${fishingTrip.fishingTripId})}">Add Catch</a>
+                </div>
             </div>
         </div>
+        <div th:if="${fishCaught.isEmpty()}">
+            <div class="container wrapper mt-lg-5">
+                <div class="container w-75">
+                    <h4>No fish caught</h4>
+                </div>
+            </div>
+        </div>
+        <div th:unless="${fishCaught.isEmpty()}">
+            <div class="container wrapper mt-lg-5">
+                <div class=" container w-75">
+                    <h4>Registered fish</h4>
+                    <table class="table table-borderless">
+                        <tr th:each="fish : ${fishCaught}">
+                            <td><img class="fish-picture" th:src="@{/img/FishLogo.png}" alt="Fish"></td>
+                            <td><span th:text="${fish.species}"></span></td>
+                            <td><span th:text="${fish.length}"></span><span> CM</span></td>
+                            <td><span th:text="${fish.weight}"></span><span> KG</span></td>
+                            <td><span th:text="${fish.fishingLure}"></span></td>
+                            <td><span th:text="${fish.description}"></span></td>
+                            <td><span th:text="${fish.getFormattedDateTime()}"></span></td>
+                            <td class="update-row"><a class="update" th:href="@{/fishing/catch/update (speciesId=${fish.speciesId},fishingTripId=${fishingTrip.fishingTripId})}"><img
+                                    th:src="@{/img/update.png}" alt="Update"></a>
+                            </td>
+                            <td><a class="update" th:href="@{/fishing/catch/delete (speciesId=${fish.speciesId}, fishingTripId=${fishingTrip.fishingTripId})}"><img
+                                    th:src="@{/img/delete.png}" alt="Delete"></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:unless="${#authorization.expression('hasAuthority(''ADMIN'')')} or ${#authentication.name.equals(fishingTrip.appUser.userName)}">
+        <div th:replace="access-denied :: accessDenied"></div>
     </div>
 </body>
 </html>

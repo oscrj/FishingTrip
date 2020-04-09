@@ -36,6 +36,10 @@ public class CreateSpecies {
         this.weight = weight;
     }
 
+    /**
+     * If the input is blank fishingLure is set to Lure not specified
+     * @return fishingLure
+     */
     public String getFishingLure() {
         if(this.fishingLure.isEmpty()){
             return fishingLure = "Lure not specified";
@@ -47,6 +51,10 @@ public class CreateSpecies {
         this.fishingLure = fishingLure;
     }
 
+    /**
+     * If the input is blank description is set to No description
+     * @return description
+     */
     public String getDescription() {
         if(this.description.isEmpty()){
             return description = "No description";
