@@ -34,7 +34,7 @@ option{
 }
 
 #navigation{
-    border-bottom: 1px solid lightgrey;
+    border-bottom: 1px solid rgba(211,211,211,0.2);
 }
 
 .nav-logo{
@@ -132,9 +132,11 @@ option{
     list-style-type: none;
 }
 
+/* doesn't work in Chrome*/
 .update-user{
     display: flex;
     justify-content: right;
+    justify-items: right;
     align-items: start;
 }
 
